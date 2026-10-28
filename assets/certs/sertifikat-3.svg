@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" role="img" aria-label="Contoh sertifikat 3">
+  <defs>
+    <linearGradient id="c3a" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f472b6"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <linearGradient id="c3b" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#f6fbfd"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="750" fill="url(#c3b)"/>
+  <rect x="0" y="0" width="1200" height="14" fill="url(#c3a)"/>
+  <rect x="0" y="736" width="1200" height="14" fill="url(#c3a)"/>
+
+  <rect x="46" y="46" width="1108" height="658" rx="10" fill="none" stroke="#e6cfe0" stroke-width="2"/>
+  <rect x="62" y="62" width="1076" height="626" rx="8" fill="none" stroke="#f5e5f0" stroke-width="1"/>
+
+  <circle cx="600" cy="168" r="52" fill="none" stroke="url(#c3a)" stroke-width="4"/>
+  <path d="M576 168l16 17 32-34" fill="none" stroke="url(#c3a)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <text x="600" y="272" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="30" letter-spacing="10" fill="#a1839a">SERTIFIKAT</text>
+  <text x="600" y="330" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#b29cae">Diberikan kepada</text>
+
+  <text x="600" y="404" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="54" font-weight="bold" fill="#2b1226">Nama Kamu</text>
+  <path d="M400 434h400" stroke="#f0e2ec" stroke-width="2"/>
+
+  <text x="600" y="486" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#b29cae">atas penyelesaian kursus</text>
+  <text x="600" y="538" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="bold" fill="#d6548f">UI/UX Design Fundamentals</text>
+
+  <text x="228" y="650" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#2b1226">08 Agustus 2023</text>
+  <path d="M120 660h216" stroke="#e6cfe0" stroke-width="2"/>
+  <text x="228" y="686" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#b29cae">Tanggal</text>
+
+  <text x="600" y="650" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#2b1226">Coursera</text>
+  <path d="M490 660h220" stroke="#e6cfe0" stroke-width="2"/>
+  <text x="600" y="686" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#b29cae">Penerbit</text>
+
+  <text x="972" y="650" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#2b1226">CR-2023-0003</text>
+  <path d="M864 660h216" stroke="#e6cfe0" stroke-width="2"/>
+  <text x="972" y="686" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#b29cae">Nomor Sertifikat</text>
+</svg>

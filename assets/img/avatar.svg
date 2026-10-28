@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img" aria-label="Avatar placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#12121b"/>
+      <stop offset="1" stop-color="#1d1d2e"/>
+    </linearGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="0.55" stop-color="#8b5cf6"/>
+      <stop offset="1" stop-color="#f472b6"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.28" r="0.62">
+      <stop offset="0" stop-color="#8b5cf6" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="600" height="600" fill="url(#bg)"/>
+  <rect width="600" height="600" fill="url(#halo)"/>
+
+  <!-- pola garis halus -->
+  <g stroke="#ffffff" stroke-opacity="0.05" stroke-width="1">
+    <path d="M0 120H600M0 240H600M0 360H600M0 480H600"/>
+    <path d="M120 0V600M240 0V600M360 0V600M480 0V600"/>
+  </g>
+
+  <!-- badan -->
+  <path d="M300 330c86 0 156 62 168 145 2 14-8 25-22 25H154c-14 0-24-11-22-25 12-83 82-145 168-145z" fill="url(#skin)" opacity="0.92"/>
+  <!-- kepala -->
+  <circle cx="300" cy="238" r="104" fill="url(#skin)"/>
+</svg>

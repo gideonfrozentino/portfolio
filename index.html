@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="id" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" id="themeColor" content="#07070b" />
+
+  <!-- =====================================================================
+       ANTI-FLASH: pasang tema SEBELUM halaman digambar.
+       Supaya tidak "kedip terang" dulu sebelum berubah jadi gelap.
+       Urutan: localStorage > pengaturan OS.
+
+       Satu-satunya tempat mengubah tema default pengunjung baru:
+       window.__PORTFOLIO_THEME__.defaultPref di bawah ini.
+       ===================================================================== -->
+  <script>
+    window.__PORTFOLIO_THEME__ = {
+      storageKey: 'portfolio-theme',
+      defaultPref: 'system'
+    };
+
+    (function () {
+      try {
+        var config = window.__PORTFOLIO_THEME__;
+        var KEY = config.storageKey;
+        var pref = localStorage.getItem(KEY);
+        if (pref !== 'light' && pref !== 'dark' && pref !== 'system') {
+          pref = config.defaultPref;
+        }
+        if (pref !== 'light' && pref !== 'dark' && pref !== 'system') {
+          pref = 'system';
+        }
+
+        var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = pref === 'system' ? (dark ? 'dark' : 'light') : pref;
+        var root = document.documentElement;
+        root.setAttribute('data-theme', theme);
+        root.style.colorScheme = theme;
+
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute('content', theme === 'dark' ? '#07070b' : '#f6f7fc');
+      } catch (e) {
+        /* localStorage bisa diblokir; biarkan CSS memakai default. */
+      }
+    })();
+  </script>
+
+  <title>Gideon — Mahasiswa Informatika (Cyber Security)</title>
+  <meta name="description" content="Portofolio Gideon, mahasiswa Informatika di Universitas Pelita Harapan dengan fokus Cyber Security. Biodata, proyek, pendidikan, dan sertifikat." />
+  <meta name="author" content="Gideon" />
+
+  <!-- Ganti URL di bawah ini kalau nanti sudah punya domain sendiri -->
+  <meta property="og:title" content="Gideon — Mahasiswa Informatika (Cyber Security)" />
+  <meta property="og:description" content="Portofolio: biodata, proyek, pendidikan, dan sertifikat." />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='26' fill='%2322d3ee'/><text x='50' y='70' font-size='60' font-family='Arial,sans-serif' font-weight='bold' text-anchor='middle' fill='%23041019'>G</text></svg>" />
+
+  <!-- Font (opsional: hapus 2 baris ini kalau mau 100% offline, font sistem tetap dipakai) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Lewati ke konten</a>
+
+  <!-- =====================================================================
+       TOMBOL SETTINGS (LOGO GEAR) — pojok kanan atas, fixed
+       Klik untuk memilih: Terang / Gelap / Ikut Sistem
+       ===================================================================== -->
+  <div class="settings" id="settings">
+    <button
+      type="button"
+      class="settings__btn"
+      id="settingsBtn"
+      aria-label="Pengaturan tampilan"
+      aria-haspopup="true"
+      aria-expanded="false"
+      aria-controls="settingsPanel"
+      title="Ubah tampilan: terang / gelap / ikut sistem"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+      </svg>
+    </button>
+
+    <div class="settings__panel" id="settingsPanel" role="dialog" aria-label="Pengaturan tampilan" hidden>
+      <p class="settings__label">Mode Tampilan</p>
+      <div class="settings__options" role="radiogroup" aria-label="Pilih mode tampilan">
+
+        <button type="button" class="theme-option" role="radio" aria-checked="false" data-theme-value="light">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.2"></circle>
+            <path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.2 5.2l1.4 1.4M17.4 17.4l1.4 1.4M18.8 5.2l-1.4 1.4M6.6 17.4l-1.4 1.4"></path>
+          </svg>
+          <span>Terang</span>
+          <svg class="theme-option__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 6 9 17l-5-5"></path>
+          </svg>
+        </button>
+
+        <button type="button" class="theme-option" role="radio" aria-checked="false" data-theme-value="dark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
+          </svg>
+          <span>Gelap</span>
+          <svg class="theme-option__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 6 9 17l-5-5"></path>
+          </svg>
+        </button>
+
+        <button type="button" class="theme-option" role="radio" aria-checked="false" data-theme-value="system">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2.5" y="4" width="19" height="13" rx="2"></rect>
+            <path d="M8.5 20.5h7M12 17v3.5"></path>
+          </svg>
+          <span>Ikut Sistem</span>
+          <svg class="theme-option__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 6 9 17l-5-5"></path>
+          </svg>
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       NAVBAR
+       ===================================================================== -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="brand" href="#home">
+        <span class="brand__mark" aria-hidden="true">G</span>
+        <span>Gideon</span>
+      </a>
+
+      <nav class="nav__links" id="navLinks" aria-label="Navigasi utama">
+        <a href="#biodata">Biodata</a>
+        <a href="#proyek">Proyek</a>
+        <a href="#pendidikan">Pendidikan</a>
+        <a href="#sertifikat">Sertifikat</a>
+        <a href="#kontak">Kontak</a>
+      </nav>
+
+      <div class="nav__end">
+        <!-- =============================================================
+             TOMBOL GANTI BAHASA (ID / EN)
+             Logikanya ada di js/i18n.js. Tambah/ubah terjemahan di sana.
+             ============================================================= -->
+        <div class="lang" id="lang" role="radiogroup" aria-label="Pilih bahasa / Choose language">
+          <button type="button" class="lang__btn" role="radio" aria-checked="true" data-lang-value="id" title="Bahasa Indonesia">ID</button>
+          <button type="button" class="lang__btn" role="radio" aria-checked="false" data-lang-value="en" title="English">EN</button>
+        </div>
+
+        <button type="button" class="nav__toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false" aria-controls="navLinks">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+
+    <!-- ===================================================================
+         HERO
+         =================================================================== -->
+    <section class="hero" id="home">
+      <div class="container hero__grid">
+
+        <div class="hero__content">
+          <span class="hero__badge">
+            <span class="hero__dot" aria-hidden="true"></span>
+            Terbuka untuk magang &amp; kolaborasi
+          </span>
+
+          <h1>Halo, saya <em>Gideon</em></h1>
+          <p class="hero__role"><strong>Mahasiswa Informatika</strong> &middot; Cyber Security</p>
+
+          <p class="hero__text">
+            Saya mahasiswa Informatika di Universitas Pelita Harapan dengan fokus Cyber
+            Security. Halaman ini berisi biodata, perjalanan belajar, proyek, dan
+            sertifikat saya.
+          </p>
+
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#proyek">
+              Lihat Proyek
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M5 12h14M13 6l6 6-6 6"></path>
+              </svg>
+            </a>
+            <a class="btn btn--ghost" href="#kontak">Hubungi Saya</a>
+          </div>
+
+          <!-- Fakta singkat — sudah sesuai datamu; ubah hanya kalau ada yang berubah -->
+          <div class="hero__stats">
+            <div class="stat">
+              <div class="stat__value gradient-text">UPH</div>
+              <div class="stat__label">Kampus</div>
+            </div>
+            <div class="stat">
+              <div class="stat__value gradient-text">Informatika</div>
+              <div class="stat__label">Program Studi</div>
+            </div>
+            <div class="stat">
+              <div class="stat__value gradient-text">Cyber Security</div>
+              <div class="stat__label">Peminatan</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__visual">
+          <!-- Ganti assets/img/avatar.svg dengan fotomu (rasio 1:1) -->
+          <div class="avatar">
+            <img src="assets/img/avatar.svg" alt="Foto profil Gideon" width="600" height="600" />
+          </div>
+          <span class="floating-chip floating-chip--1">Cyber Security</span>
+          <span class="floating-chip floating-chip--2">Python</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         BIODATA  — ubah nilainya, tambah/kurang <div class="bio-item">
+         Nilai yang bertanda "Contoh:" masih PLACEHOLDER — ganti data aslimu.
+         =================================================================== -->
+    <section class="section" id="biodata">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Biodata</p>
+          <h2 class="section__title" data-i18n-html="title.biodata">Data <span class="gradient-text">Diri</span></h2>
+          <p class="section__lead">
+            Ringkasan informasi pribadi dan latar belakang pendidikan.
+          </p>
+        </div>
+
+        <dl class="bio-grid reveal">
+          <div class="bio-item">
+            <!-- Cek ejaan nama lengkap: dokumenmu menulis "Frozentino" dan "Fronttino" — samakan, lalu lengkapi di sini -->
+            <dt>Nama Lengkap</dt>
+            <dd>Gideon</dd>
+          </div>
+          <div class="bio-item">
+            <dt>Tempat, Tanggal Lahir</dt>
+            <!-- PLACEHOLDER -->
+            <dd>Contoh: Jakarta, 1 Januari 2000</dd>
+          </div>
+          <div class="bio-item">
+            <dt>Peminatan</dt>
+            <dd>Cyber Security</dd>
+          </div>
+          <div class="bio-item">
+            <dt>Alamat</dt>
+            <!-- PLACEHOLDER -->
+            <dd>Contoh: Kota, Provinsi</dd>
+          </div>
+          <div class="bio-item">
+            <dt>Pendidikan</dt>
+            <dd>S1 Informatika (Cyber Security)</dd>
+          </div>
+          <div class="bio-item">
+            <dt>Kampus</dt>
+            <!-- PLACEHOLDER: ganti 20XX dengan tahun angkatanmu -->
+            <dd>Universitas Pelita Harapan &middot; 20XX</dd>
+          </div>
+          <div class="bio-item">
+            <dt>Status</dt>
+            <dd>Mahasiswa aktif &middot; terbuka untuk magang</dd>
+          </div>
+          <div class="bio-item">
+            <dt>Bahasa</dt>
+            <dd>Indonesia &middot; Inggris</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         PROYEK
+         Kartu di bawah ini masih CONTOH (placeholder).
+         Cara menambah/mengganti: copy satu blok <article class="project">
+         lalu ubah judul, deskripsi, tag, dan link-nya.
+         =================================================================== -->
+    <section class="section" id="proyek">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Proyek</p>
+          <h2 class="section__title" data-i18n-html="title.proyek">Proyek <span class="gradient-text">Pilihan</span></h2>
+          <p class="section__lead">
+            Beberapa proyek kuliah dan latihan mandiri yang saya kerjakan.
+          </p>
+        </div>
+
+        <div class="projects">
+
+          <!-- ==== PROYEK 1 (CONTOH — ganti isinya) ==== -->
+          <article class="project reveal">
+            <h3 class="project__title">Contoh: Program Python Pertama</h3>
+            <p class="project__desc">
+              Ganti dengan proyekmu: aplikasi kecil atau program CLI, lalu ceritakan
+              masalah yang diselesaikan dan hasilnya.
+            </p>
+            <div class="project__tags">
+              <span class="tag">Python</span>
+              <span class="tag">Algoritma</span>
+            </div>
+            <div class="project__links">
+              <!-- PLACEHOLDER: ganti href dengan link demo / repo -->
+              <a class="project__link" href="#" aria-label="Demo proyek contoh 1">Demo ↗</a>
+              <a class="project__link" href="#" aria-label="Kode proyek contoh 1">Kode ↗</a>
+            </div>
+          </article>
+
+          <!-- ==== PROYEK 2 (CONTOH — ganti isinya) ==== -->
+          <article class="project reveal" style="--d: 80ms">
+            <h3 class="project__title">Contoh: Proyek Web</h3>
+            <p class="project__desc">
+              Portofolio, landing page, atau aplikasi web sederhana — tulis stack yang
+              dipakai dan tautkan demo atau kodenya.
+            </p>
+            <div class="project__tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+            </div>
+            <div class="project__links">
+              <a class="project__link" href="#" aria-label="Demo proyek contoh 2">Demo ↗</a>
+              <a class="project__link" href="#" aria-label="Kode proyek contoh 2">Kode ↗</a>
+            </div>
+          </article>
+
+          <!-- ==== PROYEK 3 (CONTOH — ganti isinya) ==== -->
+          <article class="project reveal" style="--d: 160ms">
+            <h3 class="project__title">Contoh: Tugas Besar Mata Kuliah</h3>
+            <p class="project__desc">
+              Proyek kelompok atau individu dari mata kuliah — jelaskan peranmu dan apa
+              yang kamu pelajari.
+            </p>
+            <div class="project__tags">
+              <span class="tag">Algoritma</span>
+              <span class="tag">Struktur Data</span>
+            </div>
+            <div class="project__links">
+              <a class="project__link" href="#" aria-label="Demo proyek contoh 3">Demo ↗</a>
+              <a class="project__link" href="#" aria-label="Kode proyek contoh 3">Kode ↗</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         PENDIDIKAN & PENGALAMAN — urut dari terbaru ke terlama
+         Item yang bertanda "Contoh:" masih PLACEHOLDER — ganti dengan
+         pengalaman aslimu (magang, organisasi, kepanitiaan, dsb).
+         =================================================================== -->
+    <section class="section" id="pendidikan">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Pendidikan &amp; Pengalaman</p>
+          <h2 class="section__title" data-i18n-html="title.pendidikan">Riwayat <span class="gradient-text">Belajar</span></h2>
+          <p class="section__lead">
+            Perjalanan pendidikan dan pengalaman saya sejauh ini.
+          </p>
+        </div>
+
+        <div class="timeline">
+
+          <!-- ==== ITEM 1 (DATA ASLI — ganti 20XX dengan tahun angkatanmu) ==== -->
+          <article class="tl-item reveal">
+            <div class="tl-card">
+              <div class="tl-top">
+                <div>
+                  <h3 class="tl-role">Mahasiswa S1 Informatika (Cyber Security)</h3>
+                  <span class="tl-company">Universitas Pelita Harapan</span>
+                </div>
+                <span class="tl-period">20XX — sekarang</span>
+              </div>
+              <p class="tl-desc">
+                Menempuh mata kuliah seperti Dasar Pemrograman (Python), Matematika
+                Diskrit, dan Aljabar Linier, sekaligus mendalami topik keamanan siber.
+              </p>
+              <div class="tl-tags">
+                <span class="tag">Python</span>
+                <span class="tag">Matematika Diskrit</span>
+                <span class="tag">Cyber Security</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ==== ITEM 2 (CONTOH — ganti atau hapus) ==== -->
+          <article class="tl-item reveal" style="--d: 80ms">
+            <div class="tl-card">
+              <div class="tl-top">
+                <div>
+                  <h3 class="tl-role">Contoh: Magang / Asisten Praktikum</h3>
+                  <span class="tl-company">Nama instansi (ganti)</span>
+                </div>
+                <span class="tl-period">20XX</span>
+              </div>
+              <p class="tl-desc">
+                Ganti dengan pengalaman nyata: magang, kepanitiaan, atau asisten
+                praktikum.
+              </p>
+              <div class="tl-tags">
+                <span class="tag">Contoh</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ==== ITEM 3 (CONTOH — ganti atau hapus) ==== -->
+          <article class="tl-item reveal" style="--d: 160ms">
+            <div class="tl-card">
+              <div class="tl-top">
+                <div>
+                  <h3 class="tl-role">Contoh: Organisasi / Komunitas Kampus</h3>
+                  <span class="tl-company">Nama organisasi (ganti)</span>
+                </div>
+                <span class="tl-period">20XX — 20XX</span>
+              </div>
+              <p class="tl-desc">
+                Ceritakan peranmu di organisasi atau komunitas, dan apa yang kamu
+                capai.
+              </p>
+              <div class="tl-tags">
+                <span class="tag">Contoh</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SERTIFIKAT
+         Kartu di bawah ini masih CONTOH (placeholder).
+         Cara menambah: copy satu blok <article class="cert"> lalu ubah isinya.
+         - Gambar   : taruh file di assets/certs/ lalu ubah src
+         - data-lightbox / data-title / data-meta : dipakai oleh lightbox
+         =================================================================== -->
+    <section class="section" id="sertifikat">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Sertifikat</p>
+          <h2 class="section__title" data-i18n-html="title.sertifikat">Sertifikasi &amp; <span class="gradient-text">Pencapaian</span></h2>
+          <p class="section__lead">
+            Klik salah satu kartu untuk melihat sertifikat ukuran penuh.
+          </p>
+        </div>
+
+        <div class="certs">
+
+          <!-- ==== SERTIFIKAT 1 (CONTOH — ganti gambar & data) ==== -->
+          <article class="cert reveal">
+            <button
+              type="button"
+              class="cert__open"
+              data-lightbox="assets/certs/sertifikat-1.svg"
+              data-title="Contoh: Kursus Online"
+              data-meta="Penerbit (ganti) &middot; 20XX"
+              aria-label="Perbesar sertifikat Contoh: Kursus Online"
+            >
+              <span class="cert__thumb">
+                <img src="assets/certs/sertifikat-1.svg" alt="Sertifikat Contoh: Kursus Online" loading="lazy" decoding="async" />
+              </span>
+              <span class="cert__body">
+                <span class="cert__title">Contoh: Kursus Online</span>
+                <span class="cert__issuer">Penerbit (ganti)</span>
+              </span>
+            </button>
+            <div class="cert__foot">
+              <span>20XX</span>
+              <!-- PLACEHOLDER: ganti href dengan link kredensial aslinya -->
+              <a class="cert__link" href="assets/certs/sertifikat-1.svg" target="_blank" rel="noopener noreferrer">Lihat kredensial ↗</a>
+            </div>
+          </article>
+
+          <!-- ==== SERTIFIKAT 2 (CONTOH — ganti gambar & data) ==== -->
+          <article class="cert reveal" style="--d: 80ms">
+            <button
+              type="button"
+              class="cert__open"
+              data-lightbox="assets/certs/sertifikat-2.svg"
+              data-title="Contoh: Pelatihan Teknis"
+              data-meta="Penyelenggara (ganti) &middot; 20XX"
+              aria-label="Perbesar sertifikat Contoh: Pelatihan Teknis"
+            >
+              <span class="cert__thumb">
+                <img src="assets/certs/sertifikat-2.svg" alt="Sertifikat Contoh: Pelatihan Teknis" loading="lazy" decoding="async" />
+              </span>
+              <span class="cert__body">
+                <span class="cert__title">Contoh: Pelatihan Teknis</span>
+                <span class="cert__issuer">Penyelenggara (ganti)</span>
+              </span>
+            </button>
+            <div class="cert__foot">
+              <span>20XX</span>
+              <a class="cert__link" href="assets/certs/sertifikat-2.svg" target="_blank" rel="noopener noreferrer">Lihat kredensial ↗</a>
+            </div>
+          </article>
+
+          <!-- ==== SERTIFIKAT 3 (CONTOH — ganti gambar & data) ==== -->
+          <article class="cert reveal" style="--d: 160ms">
+            <button
+              type="button"
+              class="cert__open"
+              data-lightbox="assets/certs/sertifikat-3.svg"
+              data-title="Contoh: Kegiatan Kampus"
+              data-meta="Penyelenggara (ganti) &middot; 20XX"
+              aria-label="Perbesar sertifikat Contoh: Kegiatan Kampus"
+            >
+              <span class="cert__thumb">
+                <img src="assets/certs/sertifikat-3.svg" alt="Sertifikat Contoh: Kegiatan Kampus" loading="lazy" decoding="async" />
+              </span>
+              <span class="cert__body">
+                <span class="cert__title">Contoh: Kegiatan Kampus</span>
+                <span class="cert__issuer">Penyelenggara (ganti)</span>
+              </span>
+            </button>
+            <div class="cert__foot">
+              <span>20XX</span>
+              <a class="cert__link" href="assets/certs/sertifikat-3.svg" target="_blank" rel="noopener noreferrer">Lihat kredensial ↗</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         KONTAK — ganti email, nomor, dan URL sosial media
+         (link GitHub sudah memakai akunmu; sisanya masih PLACEHOLDER)
+         =================================================================== -->
+    <section class="section" id="kontak">
+      <div class="container">
+        <div class="section__head reveal">
+          <p class="eyebrow">Kontak</p>
+          <h2 class="section__title" data-i18n-html="title.kontak">Mari <span class="gradient-text">Terhubung</span></h2>
+          <p class="section__lead">
+            Punya proyek, lowongan, atau sekadar ingin berdiskusi? Silakan hubungi saya.
+          </p>
+        </div>
+
+        <div class="cta reveal">
+          <h3>Sedang mencari kolaborator?</h3>
+          <p>
+            Saya terbuka untuk magang, proyek kolaborasi, maupun diskusi seputar
+            kuliah dan teknologi. Biasanya saya membalas dalam 1&times;24 jam.
+          </p>
+          <div class="cta__actions">
+            <!-- PLACEHOLDER: ganti dengan alamat emailmu -->
+            <a class="btn btn--primary" href="mailto:nama@email.com">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2.5" y="4.5" width="19" height="15" rx="2.5"></rect>
+                <path d="m3.5 7 8.5 6 8.5-6"></path>
+              </svg>
+              Kirim Email
+            </a>
+            <!-- PLACEHOLDER: ganti dengan nomor WhatsApp-mu (format 62...) -->
+            <a class="btn btn--ghost" href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="contact-grid">
+          <!-- PLACEHOLDER: ganti email -->
+          <a class="contact-card reveal" href="mailto:nama@email.com">
+            <span class="contact-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2.5" y="4.5" width="19" height="15" rx="2.5"></rect>
+                <path d="m3.5 7 8.5 6 8.5-6"></path>
+              </svg>
+            </span>
+            <span>
+              <span class="contact-card__label">Email</span>
+              <span class="contact-card__value">nama@email.com</span>
+            </span>
+          </a>
+
+          <!-- PLACEHOLDER: ganti nomor WhatsApp -->
+          <a class="contact-card reveal" style="--d: 60ms" href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer">
+            <span class="contact-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.4L3.5 20.5l1.7-4.7A8.4 8.4 0 1 1 21 11.5z"></path>
+                <path d="M8.8 8.6c.3-.6 1-.6 1.3-.1l.6 1c.2.3.1.6-.1.8l-.5.4c.4.9 1.2 1.7 2.1 2.1l.4-.5c.2-.2.5-.3.8-.1l1 .6c.5.3.5 1-.1 1.3-1.4.7-3.6-.6-4.9-1.9-1.3-1.3-2.6-3.5-1.9-4.9z"></path>
+              </svg>
+            </span>
+            <span>
+              <span class="contact-card__label">WhatsApp</span>
+              <span class="contact-card__value">+62 812-3456-7890</span>
+            </span>
+          </a>
+
+          <!-- Akun GitHub diambil dari konfigurasi git komputer ini — ganti kalau akun publikmu berbeda -->
+          <a class="contact-card reveal" style="--d: 120ms" href="https://github.com/gideontugas123-design" target="_blank" rel="noopener noreferrer">
+            <span class="contact-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 20.5c-4.5 1.4-4.5-2.3-6-2.8m12 5v-3.6c0-1 .1-1.4-.5-2 2.3-.3 4.5-1.1 4.5-5a4 4 0 0 0-1.1-2.8 3.7 3.7 0 0 0-.1-2.8s-.9-.3-3 1.1a10.3 10.3 0 0 0-5.4 0C7.2 6.2 6.3 6.5 6.3 6.5a3.7 3.7 0 0 0-.1 2.8A4 4 0 0 0 5.1 12c0 3.9 2.2 4.7 4.5 5-.6.6-.6 1.2-.5 2v3.6"></path>
+              </svg>
+            </span>
+            <span>
+              <span class="contact-card__label">GitHub</span>
+              <span class="contact-card__value">github.com/gideontugas123-design</span>
+            </span>
+          </a>
+
+          <!-- PLACEHOLDER: ganti dengan URL LinkedIn-mu -->
+          <a class="contact-card reveal" style="--d: 180ms" href="https://linkedin.com/in/username" target="_blank" rel="noopener noreferrer">
+            <span class="contact-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="3"></rect>
+                <path d="M7.5 10.5V17M7.5 7.4v.1M12 17v-3.6a2 2 0 0 1 4 0V17"></path>
+              </svg>
+            </span>
+            <span>
+              <span class="contact-card__label">LinkedIn</span>
+              <span class="contact-card__value">linkedin.com/in/username</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================================
+       FOOTER
+       =================================================================== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>&copy; <span id="year">2026</span> Gideon. Dibuat dengan HTML, CSS &amp; JavaScript.</p>
+      <a class="footer__top" href="#home">
+        Kembali ke atas
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="16" height="16">
+          <path d="M12 19V5M6 11l6-6 6 6"></path>
+        </svg>
+      </a>
+    </div>
+  </footer>
+
+  <!-- ===================================================================
+       LIGHTBOX SERTIFIKAT
+       =================================================================== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Pratinjau sertifikat" hidden>
+    <button type="button" class="lightbox__close" id="lightboxClose" aria-label="Tutup pratinjau">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+        <path d="M6 6l12 12M18 6 6 18"></path>
+      </svg>
+    </button>
+    <figure class="lightbox__figure">
+      <img class="lightbox__img" id="lightboxImg" src="" alt="" />
+      <figcaption class="lightbox__caption">
+        <strong id="lightboxTitle"></strong>
+        <span id="lightboxMeta"></span>
+      </figcaption>
+    </figure>
+  </div>
+
+  <script src="js/theme.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

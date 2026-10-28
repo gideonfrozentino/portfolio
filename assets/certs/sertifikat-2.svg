@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" role="img" aria-label="Contoh sertifikat 2">
+  <defs>
+    <linearGradient id="c2a" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8b5cf6"/>
+      <stop offset="1" stop-color="#f472b6"/>
+    </linearGradient>
+    <linearGradient id="c2b" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#faf5ff"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="750" fill="url(#c2b)"/>
+  <rect x="0" y="0" width="1200" height="14" fill="url(#c2a)"/>
+  <rect x="0" y="736" width="1200" height="14" fill="url(#c2a)"/>
+
+  <rect x="46" y="46" width="1108" height="658" rx="10" fill="none" stroke="#ded0f2" stroke-width="2"/>
+  <rect x="62" y="62" width="1076" height="626" rx="8" fill="none" stroke="#ede5fa" stroke-width="1"/>
+
+  <circle cx="600" cy="168" r="52" fill="none" stroke="url(#c2a)" stroke-width="4"/>
+  <path d="M576 168l16 17 32-34" fill="none" stroke="url(#c2a)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <text x="600" y="272" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="30" letter-spacing="10" fill="#8a7fa6">CERTIFICATE</text>
+  <text x="600" y="330" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#a49bb8">This certifies that</text>
+
+  <text x="600" y="404" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="54" font-weight="bold" fill="#1d1430">Nama Kamu</text>
+  <path d="M400 434h400" stroke="#e6dcf3" stroke-width="2"/>
+
+  <text x="600" y="486" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#a49bb8">has successfully completed</text>
+  <text x="600" y="538" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="bold" fill="#8b5cf6">JavaScript Algorithms &amp; Data Structures</text>
+
+  <text x="228" y="650" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#1d1430">17 Maret 2023</text>
+  <path d="M120 660h216" stroke="#ded0f2" stroke-width="2"/>
+  <text x="228" y="686" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#a49bb8">Date</text>
+
+  <text x="600" y="650" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#1d1430">freeCodeCamp</text>
+  <path d="M490 660h220" stroke="#ded0f2" stroke-width="2"/>
+  <text x="600" y="686" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#a49bb8">Issuer</text>
+
+  <text x="972" y="650" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#1d1430">FCC-2023-0002</text>
+  <path d="M864 660h216" stroke="#ded0f2" stroke-width="2"/>
+  <text x="972" y="686" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#a49bb8">Credential ID</text>
+</svg>
