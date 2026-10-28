@@ -1,143 +1,134 @@
 /* ==========================================================================
    variables.css — Design Tokens
    --------------------------------------------------------------------------
-   Semua warna ada di sini. Ubah satu nilai di blok [data-theme="light"]
-   atau [data-theme="dark"], dan seluruh website ikut berubah.
+   Palet mengikuti template "Bentos": hitam pekat, kartu abu gelap,
+   aksen oranye. Ubah satu nilai di blok [data-theme="light"] atau
+   [data-theme="dark"], dan seluruh website ikut berubah.
    ========================================================================== */
 
 :root {
   /* ---------- Tipografi ---------- */
-  --font-sans: "Plus Jakarta Sans", "Inter", system-ui, -apple-system,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular,
-    "Cascadia Code", Consolas, monospace;
+  --font-sans: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
 
   /* ---------- Bentuk ---------- */
-  --radius-sm: 10px;
-  --radius: 16px;
+  --radius-sm: 12px;
+  --radius: 18px;
   --radius-lg: 24px;
   --radius-full: 999px;
 
   /* ---------- Layout ---------- */
-  --maxw: 1120px;
+  --maxw: 1140px;
   --gutter: clamp(1.25rem, 4vw, 2.5rem);
-  --nav-h: 68px;
+  --header-h: 86px;
 
   /* ---------- Gerak ---------- */
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
-  --dur: 0.28s;
+  --dur: 0.3s;
 
   /* ======================================================================
-     TEMA GELAP  (default / dipakai saat OS user memakai dark mode)
+     TEMA GELAP  (default — sesuai template)
      ====================================================================== */
-  --bg: #07070b;
-  --bg-soft: #0b0b12;
-  --surface: #101019;
-  --surface-2: #15151f;
-  --border: #232334;
-  --border-soft: #1b1b28;
+  --bg: #000000;
+  --bg-soft: #0a0a0b;
+  --surface: #121214;
+  --surface-2: #1b1b1e;
+  --border: rgba(119, 119, 125, 0.25);
+  --border-soft: rgba(119, 119, 125, 0.14);
 
-  --text: #eceefb;
-  --text-dim: #a1a4bd;
-  --text-faint: #8a8ea8;
+  --text: #ffffff;
+  --text-dim: #9f9f9f;
+  --text-faint: #77777d;
 
-  --accent: #22d3ee;        /* cyan  — warna utama   */
-  --accent-2: #8b5cf6;      /* violet — warna kedua  */
-  --accent-3: #f472b6;      /* pink   — warna ketiga */
-  --accent-contrast: #04131a;
+  --accent: #eb5d3a;         /* oranye khas template */
+  --accent-strong: #f2734f;  /* oranye lebih terang (hover)  */
+  --accent-contrast: #ffffff;
+  --accent-soft: rgba(235, 93, 58, 0.12);
+  --accent-soft-border: rgba(235, 93, 58, 0.28);
 
-  /* Ujung violet khusus tombol primary, sedikit lebih terang supaya
-     teks gelap tetap lolos kontras AA di atas gradient. */
-  --btn-2: #9d7bf8;
+  --green: #35e65a;
+  --green-glow: rgba(53, 230, 90, 0.22);
 
-  --glow-1: rgba(34, 211, 238, 0.20);
-  --glow-2: rgba(139, 92, 246, 0.20);
-  --grid-line: rgba(255, 255, 255, 0.04);
+  --nav-link: #cecece;
+  --card-inset: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 
-  --shadow-sm: 0 2px 10px -4px rgba(0, 0, 0, 0.6);
-  --shadow: 0 20px 50px -28px rgba(0, 0, 0, 0.9);
-  --shadow-lg: 0 40px 90px -40px rgba(0, 0, 0, 1);
-
-  --selection: rgba(34, 211, 238, 0.28);
-  --glass: rgba(10, 10, 16, 0.72);
-  --overlay: rgba(3, 3, 8, 0.85);
+  --selection: rgba(235, 93, 58, 0.35);
+  --overlay: rgba(0, 0, 0, 0.88);
+  --header-glass: rgba(0, 0, 0, 0.82);
 
   color-scheme: dark;
 }
 
 /* ======================================================================
    TEMA TERANG
+   (variasi dari desain yang sama: kartu putih di atas latar abu muda)
    ====================================================================== */
 [data-theme="light"] {
-  --bg: #f6f7fc;
-  --bg-soft: #eceefa;
+  --bg: #f2f2f4;
+  --bg-soft: #ececee;
   --surface: #ffffff;
-  --surface-2: #f3f4fa;
-  --border: #e0e3f0;
-  --border-soft: #e9ebf5;
+  --surface-2: #f7f7f9;
+  --border: rgba(16, 16, 22, 0.12);
+  --border-soft: rgba(16, 16, 22, 0.07);
 
-  --text: #10111a;
-  --text-dim: #53566e;
-  --text-faint: #6b6f8c;
+  --text: #131316;
+  --text-dim: #5b5c63;
+  --text-faint: #71737a;
 
-  --accent: #0e7490;
-  --accent-2: #7c3aed;
-  --accent-3: #db2777;
+  --accent: #d9522f;         /* sedikit lebih gelap supaya kontras di latar putih */
+  --accent-strong: #c34423;
   --accent-contrast: #ffffff;
-  --btn-2: #7c3aed;
+  --accent-soft: rgba(217, 82, 47, 0.10);
+  --accent-soft-border: rgba(217, 82, 47, 0.28);
 
-  --glow-1: rgba(8, 145, 178, 0.14);
-  --glow-2: rgba(124, 58, 237, 0.12);
-  --grid-line: rgba(16, 17, 26, 0.045);
+  --green: #1c9e43;
+  --green-glow: rgba(28, 158, 67, 0.2);
 
-  --shadow-sm: 0 2px 10px -4px rgba(24, 26, 48, 0.16);
-  --shadow: 0 20px 50px -28px rgba(24, 26, 48, 0.28);
-  --shadow-lg: 0 40px 90px -40px rgba(24, 26, 48, 0.35);
+  --nav-link: #3a3b41;
+  --card-inset: inset 0 1px 0 rgba(255, 255, 255, 0.9);
 
-  --selection: rgba(8, 145, 178, 0.18);
-  --glass: rgba(255, 255, 255, 0.78);
-  --overlay: rgba(16, 17, 26, 0.72);
+  --selection: rgba(217, 82, 47, 0.25);
+  --overlay: rgba(20, 20, 24, 0.75);
+  --header-glass: rgba(242, 242, 244, 0.85);
 
   color-scheme: light;
 }
 
 /* ======================================================================
-   TANPA JAVASCRIPT — ikuti preferensi OS
+   TANPA JAVASCRIPT — ikut preferensi OS
    --------------------------------------------------------------------
    Blok ini hanya aktif kalau <html> belum punya data-theme (artinya
-   script tema tidak berjalan). Nilainya harus sama dengan blok
-   [data-theme="light"] di atas.
+   script tema tidak berjalan). Untuk versi terang, nilainya harus
+   disamakan dengan blok [data-theme="light"] di atas.
    ====================================================================== */
 @media (prefers-color-scheme: light) {
   :root:not([data-theme]) {
-    --bg: #f6f7fc;
-    --bg-soft: #eceefa;
+    --bg: #f2f2f4;
+    --bg-soft: #ececee;
     --surface: #ffffff;
-    --surface-2: #f3f4fa;
-    --border: #e0e3f0;
-    --border-soft: #e9ebf5;
+    --surface-2: #f7f7f9;
+    --border: rgba(16, 16, 22, 0.12);
+    --border-soft: rgba(16, 16, 22, 0.07);
 
-    --text: #10111a;
-    --text-dim: #53566e;
-    --text-faint: #6b6f8c;
+    --text: #131316;
+    --text-dim: #5b5c63;
+    --text-faint: #71737a;
 
-    --accent: #0e7490;
-    --accent-2: #7c3aed;
-    --accent-3: #db2777;
+    --accent: #d9522f;
+    --accent-strong: #c34423;
     --accent-contrast: #ffffff;
-    --btn-2: #7c3aed;
+    --accent-soft: rgba(217, 82, 47, 0.10);
+    --accent-soft-border: rgba(217, 82, 47, 0.28);
 
-    --glow-1: rgba(8, 145, 178, 0.14);
-    --glow-2: rgba(124, 58, 237, 0.12);
-    --grid-line: rgba(16, 17, 26, 0.045);
+    --green: #1c9e43;
+    --green-glow: rgba(28, 158, 67, 0.2);
 
-    --shadow-sm: 0 2px 10px -4px rgba(24, 26, 48, 0.16);
-    --shadow: 0 20px 50px -28px rgba(24, 26, 48, 0.28);
-    --shadow-lg: 0 40px 90px -40px rgba(24, 26, 48, 0.35);
+    --nav-link: #3a3b41;
+    --card-inset: inset 0 1px 0 rgba(255, 255, 255, 0.9);
 
-    --selection: rgba(8, 145, 178, 0.18);
-    --glass: rgba(255, 255, 255, 0.78);
-    --overlay: rgba(16, 17, 26, 0.72);
+    --selection: rgba(217, 82, 47, 0.25);
+    --overlay: rgba(20, 20, 24, 0.75);
+    --header-glass: rgba(242, 242, 244, 0.85);
 
     color-scheme: light;
   }

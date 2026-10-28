@@ -217,6 +217,29 @@
   }
 
   /* ==================================================================
+     5b. FILTER PROYEK (Semua / Latihan / Web / Kuliah)
+     ================================================================== */
+  var filterButtons = document.querySelectorAll('.project-filter [data-filter]');
+  var projectItems = document.querySelectorAll('.project-item[data-category]');
+
+  if (filterButtons.length && projectItems.length) {
+    Array.prototype.forEach.call(filterButtons, function (btn) {
+      btn.addEventListener('click', function () {
+        var filter = btn.getAttribute('data-filter');
+
+        Array.prototype.forEach.call(filterButtons, function (b) {
+          b.classList.toggle('current', b === btn);
+        });
+
+        Array.prototype.forEach.call(projectItems, function (item) {
+          var show = filter === 'all' || item.getAttribute('data-category') === filter;
+          item.classList.toggle('is-hidden', !show);
+        });
+      });
+    });
+  }
+
+  /* ==================================================================
      6. TAHUN OTOMATIS DI FOOTER
      ================================================================== */
   var year = document.getElementById('year');

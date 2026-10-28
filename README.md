@@ -1,6 +1,7 @@
 # Website Portfolio
 
-Website portfolio pribadi dengan **mode tampilan Terang / Gelap / Ikut Sistem** dan
+Website portfolio pribadi dengan desain **gelap + aksen oranye** (gaya template "Bentos"),
+lengkap dengan **mode tampilan Terang / Gelap / Ikut Sistem** dan
 **tombol ganti bahasa Indonesia / English**.
 Dibuat pakai HTML, CSS, dan JavaScript murni — tanpa build tool, tanpa `npm install`.
 
@@ -24,15 +25,18 @@ portfolio/
 ├── js/
 │   ├── theme.js            <- logika ganti tema + tombol settings
 │   ├── i18n.js             <- tombol bahasa ID/EN + semua terjemahan
-│   └── main.js             <- navbar, animasi scroll, lightbox sertifikat
+│   └── main.js             <- navbar, filter proyek, animasi scroll, lightbox
 └── assets/
-    ├── img/avatar.svg      <- foto profil placeholder
+    ├── img/
+    │   ├── profile.jpg     <- foto profil (kartu kiri bagian TENTANG)
+    │   ├── work-1..3.svg   <- gambar contoh proyek (placeholder)
+    │   └── avatar.svg      <- avatar placeholder cadangan
     └── certs/              <- gambar/PDF sertifikat
 ```
 
 ## Cara ganti tema
 
-Klik **ikon gear** di pojok kanan atas (posisinya menempel, tetap terlihat saat scroll).
+Klik **ikon gear** di header kanan (tetap terlihat saat halaman di-scroll).
 Pilih salah satu:
 
 | Pilihan | Efek |
@@ -51,16 +55,16 @@ Buka `index.html`, cari blok konfigurasi di `<head>`:
 ```js
 window.__PORTFOLIO_THEME__ = {
   storageKey: 'portfolio-theme',
-  defaultPref: 'system'   // ganti ke 'dark' atau 'light'
+  defaultPref: 'dark'   // ganti ke 'system' (ikut OS) atau 'light'
 };
 ```
 
-`'system'` = ikut OS pengunjung (pengaturan sekarang). Nilai ini dipakai
+`'dark'` = tema gelap khas desain ini (pengaturan sekarang). Nilai ini dipakai
 oleh script anti-flash dan `js/theme.js`, jadi cukup diubah di satu tempat.
 
 ## Cara ganti bahasa (ID / EN)
 
-Klik tombol **ID / EN** di navbar (kanan atas). Seluruh teks halaman langsung
+Klik tombol **ID / EN** di header (kanan atas). Seluruh teks halaman langsung
 berganti bahasa, dan `<html lang>` ikut disesuaikan untuk pembaca layar.
 Pilihan **tersimpan otomatis** di `localStorage` (key `portfolio-lang`).
 
@@ -83,10 +87,12 @@ di dictionary akan dibiarkan apa adanya (aman).
 
 | Yang mau diubah | Letak |
 | --- | --- |
-| Nama, role, tagline | `index.html` → bagian `HERO` |
-| Foto profil | ganti `assets/img/avatar.svg` (pakai gambar rasio 1:1) |
+| Nama, role, foto, sosial | `index.html` → bagian `TENTANG` (kartu kiri) |
+| Foto profil | ganti `assets/img/profile.jpg` (rasio 1:1, tampil bulat) |
+| Teks perkenalan & badge | `index.html` → bagian `TENTANG` (kartu kanan) |
+| Marquee tech | `index.html` → kartu "Tech yang sedang saya pelajari" |
 | Biodata | `index.html` → bagian `BIODATA` |
-| Proyek | `index.html` → bagian `PROYEK` |
+| Proyek + filter | `index.html` → bagian `PROYEK` |
 | Pendidikan & pengalaman | `index.html` → bagian `PENDIDIKAN & PENGALAMAN` |
 | Sertifikat | `index.html` → bagian `SERTIFIKAT` |
 | Kontak & sosmed | `index.html` → bagian `KONTAK` (termasuk link `mailto:` dan `wa.me`) |
@@ -132,35 +138,41 @@ baru) dan **jangan** isi `data-lightbox` dengan PDF.
 2. **Copy satu blok** berikut dan ubah isinya:
 
 ```html
-<article class="project reveal">
-  <h3 class="project__title">Judul Proyek</h3>
-  <p class="project__desc">
-    Satu-dua kalimat: masalah yang diselesaikan, stack yang dipakai, dan hasilnya.
-  </p>
-  <div class="project__tags">
-    <span class="tag">Python</span>
-    <span class="tag">Algoritma</span>
+<article class="project-item reveal" data-category="latihan">
+  <div class="project-image">
+    <img src="assets/img/work-1.svg" alt="Screenshot proyek" loading="lazy" width="1200" height="750" />
+    <a class="details-btn" href="LINK-DEMO-ATAU-REPO" aria-label="Buka proyek">
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z"></path></svg>
+    </a>
   </div>
-  <div class="project__links">
-    <a class="project__link" href="LINK-DEMO" target="_blank" rel="noopener">Demo ↗</a>
-    <a class="project__link" href="LINK-REPO" target="_blank" rel="noopener">Kode ↗</a>
+  <div class="project-content">
+    <span class="project-cat">Latihan</span>
+    <h3 class="project-title">Judul Proyek</h3>
+    <p class="project-desc">
+      Satu-dua kalimat: masalah yang diselesaikan, stack yang dipakai, dan hasilnya.
+    </p>
   </div>
 </article>
 ```
 
-Tips: 3-6 kartu sudah cukup. Kalau sebuah proyek hanya punya repo tanpa demo,
-hapus saja link "Demo".
+Tips:
+- `data-category` dan label `.project-cat` harus cocok dengan tombol filter
+  (`latihan`, `web`, atau `kuliah`). Mau kategori baru? Tambah tombolnya di
+  `<ul class="project-filter">` memakai pola yang sama.
+- Gambar proyek: taruh di `assets/img/`, rasio ideal 16:10 (mis. 1200×750).
+- 3-6 kartu sudah cukup.
 
 ## Mengubah warna tema
 
 Semua warna ada di `css/variables.css`, terpisah per tema:
 
 ```css
-:root { --accent: #22d3ee; ... }            /* tema gelap  */
-[data-theme="light"] { --accent: #0e7490; } /* tema terang */
+:root { --accent: #eb5d3a; --bg: #000000; --surface: #121214; ... }  /* tema gelap  */
+[data-theme="light"] { --accent: #d9522f; ... }                      /* tema terang */
 ```
 
-Ganti nilai `--accent`, `--accent-2`, `--accent-3` untuk mengubah nuansa warna
+Ganti nilai `--accent` (aksen oranye), `--accent-strong` (warna hover),
+`--bg` (latar halaman), dan `--surface` (kartu) untuk mengubah nuansa warna
 seluruh halaman sekaligus. Tombol settings tidak perlu diubah.
 
 ## Checklist konten sebelum publish
@@ -169,15 +181,17 @@ Cari dan ganti semua placeholder yang masih ada. Kata kunci pencarian:
 `Contoh:`, `(ganti)`, `20XX`, `nama@email.com`, `+62 812-3456-7890`,
 `linkedin.com/in/username`.
 
-- [ ] Nama lengkap — samakan ejaan, lalu lengkapi nama di brand & biodata
-- [ ] Foto profil rasio 1:1 (ganti `assets/img/avatar.svg`)
+- [ ] Nama lengkap — samakan ejaan, lalu lengkapi di brand & biodata
+- [ ] Foto profil — `assets/img/profile.jpg` sudah terisi; ganti kalau mau
 - [ ] Judul halaman, meta description, dan OG title (sudah terisi nama — periksa)
 - [ ] Biodata: tempat & tanggal lahir, alamat, dan tahun angkatan (`20XX`)
-- [ ] Hero: badge "Terbuka untuk magang & kolaborasi" — sesuaikan statusmu
-- [ ] Proyek: ganti 3 kartu contoh dengan proyek asli + link demo/repo
+- [ ] Badge "Terbuka untuk magang & kolaborasi" — sesuaikan statusmu
+- [ ] Marquee tech: sesuaikan daftar tech yang benar-benar kamu pelajari
+- [ ] Tombol "Unduh CV" — masih `href="#"`; taruh file CV-mu lalu isi linknya
+- [ ] Proyek: ganti 3 kartu contoh (gambar + teks) dengan proyek asli
 - [ ] Pendidikan & pengalaman: isi tahun, ganti/isi item "Contoh:"
 - [ ] Sertifikat: ganti gambar contoh, judul, penerbit, tahun, URL kredensial
-- [ ] Email, WhatsApp (link `mailto:` dan `wa.me` ikut diganti)
+- [ ] Email & WhatsApp (link `mailto:` dan `wa.me` ikut diganti)
 - [ ] LinkedIn — GitHub sudah terisi, cek `index.html` bagian `KONTAK`
 
 ## Deploy ke GitHub Pages
@@ -208,14 +222,14 @@ lengkap halaman GitHub Pages di atas (termasuk nama repo).
 - Navigasi keyboard: Tab, Esc, dan tombol panah di panel tema.
 - `prefers-reduced-motion` dihormati.
 - Tanpa JavaScript: konten tetap tampil, menu mobile tetap bisa dipakai,
-  tema mengikuti OS, dan tombol settings + tombol bahasa disembunyikan.
+  tema mengikuti OS, dan tombol settings + bahasa + filter proyek disembunyikan.
 
 ## Catatan teknis
 
 - Tema mengikuti: `localStorage` → `window.__PORTFOLIO_THEME__.defaultPref`
-  (default `system` = pengaturan OS).
+  (default `dark` = tema gelap desain ini; bisa diubah ke `system`/`light`).
 - Ada script anti-flash di `<head>` supaya tidak kedip terang sebelum jadi gelap.
 - Kalau JavaScript mati, `css/variables.css` otomatis mengikuti tema OS.
 - Sudah mendukung navigasi keyboard (Tab / Esc / panah) dan `prefers-reduced-motion`.
-- Font diambil dari Google Fonts. Kalau ingin 100% offline, hapus 3 baris
+- Font (Poppins) diambil dari Google Fonts. Kalau ingin 100% offline, hapus 3 baris
   `<link ...fonts.googleapis.com...>` di `<head>` — font sistem otomatis dipakai.

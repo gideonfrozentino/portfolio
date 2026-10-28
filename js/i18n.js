@@ -21,7 +21,7 @@
    - Teks biasa ......... tambahkan pasangan di TEXT  (kunci = teks Indonesia)
    - Atribut ............ tambahkan pasangan di ATTR  (alt, aria-label, title,
                           data-title, data-meta, content/placeholder)
-   - Judul yang berisi tag HTML (mis. ada <span class="gradient-text">):
+   - Judul yang berisi tag HTML (mis. ada <span class="accent">):
      tambahkan atribut data-i18n-html="kunci" di index.html lalu isi HTML_MAP.
    ========================================================================== */
 
@@ -46,55 +46,45 @@
     Gelap: 'Dark',
     'Ikut Sistem': 'Follow System',
 
-    /* --- Brand & navigasi --- */
-    Biodata: 'Bio',
-    Proyek: 'Projects',
+    /* --- Navigasi & tombol utama --- */
+    Tentang: 'About',
     Pendidikan: 'Education',
+    Proyek: 'Projects',
     Sertifikat: 'Certificates',
     Kontak: 'Contact',
-
-    /* --- Hero --- */
-    'Terbuka untuk magang & kolaborasi': 'Open to internships & collaboration',
-    'Halo, saya': "Hi, I'm",
-    'Mahasiswa Informatika': 'Informatics Student',
-    'Saya mahasiswa Informatika di Universitas Pelita Harapan dengan fokus Cyber Security. Halaman ini berisi biodata, perjalanan belajar, proyek, dan sertifikat saya.':
-      "I'm an Informatics student at Universitas Pelita Harapan focusing on Cyber Security. This page holds my bio, learning journey, projects, and certificates.",
-    'Lihat Proyek': 'View Projects',
     'Hubungi Saya': 'Contact Me',
-    Kampus: 'University',
-    Informatika: 'Informatics',
-    'Program Studi': 'Study Program',
-    Peminatan: 'Specialization',
+
+    /* --- Kartu profil --- */
+    'Mahasiswa Informatika · Universitas Pelita Harapan':
+      'Informatics Student · Universitas Pelita Harapan',
+
+    /* --- Kartu perkenalan --- */
+    'Halo!': 'Hello There!',
+    'Halaman ini berisi biodata, perjalanan belajar, proyek, dan sertifikat saya.':
+      'This page holds my bio, learning journey, projects, and certificates.',
+    'Terbuka untuk magang & kolaborasi': 'Open to internships & collaboration',
+    'Unduh CV': 'Download CV',
+    'Lihat Proyek': 'View Projects',
+
+    /* --- Marquee tech --- */
+    'Tech yang sedang saya pelajari': "Tech I'm Currently Learning",
 
     /* --- Biodata --- */
+    Biodata: 'Bio',
     'Ringkasan informasi pribadi dan latar belakang pendidikan.':
       'A summary of my personal details and educational background.',
     'Nama Lengkap': 'Full Name',
-    'Contoh: Jakarta, 1 Januari 2000': 'Example: Jakarta, 1 January 2000',
     'Tempat, Tanggal Lahir': 'Place, Date of Birth',
+    'Contoh: Jakarta, 1 Januari 2000': 'Example: Jakarta, 1 January 2000',
+    Peminatan: 'Specialization',
     Alamat: 'Address',
     'Contoh: Kota, Provinsi': 'Example: City, Province',
     Pendidikan: 'Education',
     'S1 Informatika (Cyber Security)': 'B.Sc. Informatics (Cyber Security)',
+    Kampus: 'University',
     'Mahasiswa aktif · terbuka untuk magang': 'Active student · open to internships',
     Bahasa: 'Languages',
     'Indonesia · Inggris': 'Indonesian · English',
-
-    /* --- Proyek --- */
-    'Beberapa proyek kuliah dan latihan mandiri yang saya kerjakan.':
-      'A few coursework projects and independent practice pieces I have worked on.',
-    'Contoh: Program Python Pertama': 'Example: First Python Program',
-    'Ganti dengan proyekmu: aplikasi kecil atau program CLI, lalu ceritakan masalah yang diselesaikan dan hasilnya.':
-      'Replace with your own project: a small app or CLI program — describe the problem it solves and the result.',
-    Algoritma: 'Algorithms',
-    'Kode ↗': 'Code ↗',
-    'Contoh: Proyek Web': 'Example: Web Project',
-    'Portofolio, landing page, atau aplikasi web sederhana — tulis stack yang dipakai dan tautkan demo atau kodenya.':
-      'A portfolio, landing page, or small web app — list the stack used and link the demo or code.',
-    'Contoh: Tugas Besar Mata Kuliah': 'Example: Course Capstone Assignment',
-    'Proyek kelompok atau individu dari mata kuliah — jelaskan peranmu dan apa yang kamu pelajari.':
-      'A group or individual course project — describe your role and what you learned.',
-    'Struktur Data': 'Data Structures',
 
     /* --- Pendidikan & pengalaman --- */
     'Pendidikan & Pengalaman': 'Education & Experience',
@@ -115,7 +105,25 @@
     'Ceritakan peranmu di organisasi atau komunitas, dan apa yang kamu capai.':
       'Describe your role in the organization or community and what you achieved.',
 
+    /* --- Proyek --- */
+    'Proyek & Karya': 'Projects & Works',
+    'Beberapa proyek kuliah dan latihan mandiri yang saya kerjakan.':
+      'A few coursework projects and independent practice pieces I have worked on.',
+    Semua: 'All',
+    Latihan: 'Practice',
+    Kuliah: 'Coursework',
+    'Contoh: Program Python Pertama': 'Example: First Python Program',
+    'Ganti dengan proyekmu: aplikasi kecil atau program CLI, lalu ceritakan masalah yang diselesaikan dan hasilnya.':
+      'Replace with your own project: a small app or CLI program — describe the problem it solves and the result.',
+    'Contoh: Proyek Web': 'Example: Web Project',
+    'Portofolio, landing page, atau aplikasi web sederhana — tulis stack yang dipakai dan tautkan demo atau kodenya.':
+      'A portfolio, landing page, or small web app — list the stack used and link the demo or code.',
+    'Contoh: Tugas Besar Mata Kuliah': 'Example: Course Capstone Assignment',
+    'Proyek kelompok atau individu dari mata kuliah — jelaskan peranmu dan apa yang kamu pelajari.':
+      'A group or individual course project — describe your role and what you learned.',
+
     /* --- Sertifikat --- */
+    'Sertifikasi & Pencapaian': 'Certifications & Achievements',
     'Klik salah satu kartu untuk melihat sertifikat ukuran penuh.':
       'Click any card to view the certificate at full size.',
     'Contoh: Kursus Online': 'Example: Online Course',
@@ -126,9 +134,6 @@
     'Lihat kredensial ↗': 'View credential ↗',
 
     /* --- Kontak --- */
-    'Punya proyek, lowongan, atau sekadar ingin berdiskusi? Silakan hubungi saya.':
-      'Have a project, a job opening, or just want to chat? Feel free to reach out.',
-    'Sedang mencari kolaborator?': 'Looking for a collaborator?',
     'Saya terbuka untuk magang, proyek kolaborasi, maupun diskusi seputar kuliah dan teknologi. Biasanya saya membalas dalam 1×24 jam.':
       "I'm open to internships, collaborative projects, or chats about coursework and technology. I usually reply within 24 hours.",
     'Kirim Email': 'Send Email',
@@ -156,16 +161,16 @@
     'Buka menu': 'Open menu',
     'Tutup menu': 'Close menu',
 
-    /* Hero */
+    /* Kartu profil */
     'Foto profil Gideon': 'Profile photo of Gideon',
 
     /* Proyek */
-    'Demo proyek contoh 1': 'Demo for sample project 1',
-    'Kode proyek contoh 1': 'Code for sample project 1',
-    'Demo proyek contoh 2': 'Demo for sample project 2',
-    'Kode proyek contoh 2': 'Code for sample project 2',
-    'Demo proyek contoh 3': 'Demo for sample project 3',
-    'Kode proyek contoh 3': 'Code for sample project 3',
+    'Contoh gambar proyek 1': 'Sample project image 1',
+    'Contoh gambar proyek 2': 'Sample project image 2',
+    'Contoh gambar proyek 3': 'Sample project image 3',
+    'Buka proyek contoh 1': 'Open sample project 1',
+    'Buka proyek contoh 2': 'Open sample project 2',
+    'Buka proyek contoh 3': 'Open sample project 3',
 
     /* Sertifikat */
     'Contoh: Kursus Online': 'Example: Online Course',
@@ -196,11 +201,10 @@
      3. DICTIONARY — JUDUL BERISI TAG HTML  (dipakai via data-i18n-html)
      ====================================================================== */
   var HTML_MAP = {
-    'title.biodata': 'Personal <span class="gradient-text">Data</span>',
-    'title.proyek': 'Selected <span class="gradient-text">Projects</span>',
-    'title.pendidikan': 'Learning <span class="gradient-text">Journey</span>',
-    'title.sertifikat': 'Certifications &amp; <span class="gradient-text">Achievements</span>',
-    'title.kontak': 'Let\'s <span class="gradient-text">Connect</span>',
+    'title.about':
+      'I\'m Gideon, an Informatics student at Universitas Pelita Harapan focusing on <span class="accent">Cyber Security</span>.',
+    'title.cta':
+      'Ready to start a <span class="accent">project</span> or a <span class="accent">collaboration</span> together?',
   };
 
   /* Atribut yang ikut diterjemahkan */
@@ -340,7 +344,7 @@
   }
 
   /* ======================================================================
-     5. TOMBOL ID / EN DI NAVBAR
+     5. TOMBOL ID / EN DI HEADER
      ====================================================================== */
   var buttons = document.querySelectorAll('[data-lang-value]');
 

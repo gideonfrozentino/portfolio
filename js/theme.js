@@ -70,7 +70,7 @@
     root.style.colorScheme = effective;
 
     if (themeColor) {
-      themeColor.setAttribute('content', effective === 'dark' ? '#07070b' : '#f6f7fc');
+      themeColor.setAttribute('content', effective === 'dark' ? '#000000' : '#f2f2f4');
     }
 
     syncOptions(pref);
