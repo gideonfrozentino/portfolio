@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" id="themeColor" content="#000000" />
+  <meta name="theme-color" id="themeColor" content="#17171a" />
 
   <!-- =====================================================================
        ANTI-FLASH: pasang tema SEBELUM halaman digambar.
@@ -16,7 +16,7 @@
   <script>
     window.__PORTFOLIO_THEME__ = {
       storageKey: 'portfolio-theme',
-      defaultPref: 'dark'
+      defaultPref: 'gray'
     };
 
     (function () {
@@ -24,11 +24,11 @@
         var config = window.__PORTFOLIO_THEME__;
         var KEY = config.storageKey;
         var pref = localStorage.getItem(KEY);
-        if (pref !== 'light' && pref !== 'dark' && pref !== 'system') {
+        if (pref !== 'light' && pref !== 'dark' && pref !== 'gray' && pref !== 'system') {
           pref = config.defaultPref;
         }
-        if (pref !== 'light' && pref !== 'dark' && pref !== 'system') {
-          pref = 'dark';
+        if (pref !== 'light' && pref !== 'dark' && pref !== 'gray' && pref !== 'system') {
+          pref = 'gray';
         }
 
         var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -38,7 +38,8 @@
         root.style.colorScheme = theme;
 
         var meta = document.querySelector('meta[name="theme-color"]');
-        if (meta) meta.setAttribute('content', theme === 'dark' ? '#000000' : '#f2f2f4');
+        var color = theme === 'dark' ? '#000000' : theme === 'gray' ? '#17171a' : '#f2f2f4';
+        if (meta) meta.setAttribute('content', color);
       } catch (e) {
         /* localStorage bisa diblokir; biarkan CSS memakai default. */
       }
@@ -135,6 +136,17 @@
                   <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
                 </svg>
                 <span>Gelap</span>
+                <svg class="theme-option__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5"></path>
+                </svg>
+              </button>
+
+              <button type="button" class="theme-option" role="radio" aria-checked="false" data-theme-value="gray">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                  <circle cx="12" cy="12" r="7.5"></circle>
+                  <path d="M12 4.5a7.5 7.5 0 0 1 0 15z" fill="currentColor" stroke="none"></path>
+                </svg>
+                <span>Abu-abu</span>
                 <svg class="theme-option__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M20 6 9 17l-5-5"></path>
                 </svg>

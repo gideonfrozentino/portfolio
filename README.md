@@ -1,6 +1,6 @@
 # Website Portfolio
 
-Website portfolio pribadi dengan desain **gelap monokrom + aksen abu-abu terang** (gaya template "Bentos"),
+Website portfolio pribadi berdesain **monokrom ala template "Bentos"** (tema Abu-abu / Gelap / Terang),
 lengkap dengan **mode tampilan Terang / Gelap / Ikut Sistem** dan
 **tombol ganti bahasa Indonesia / English**.
 Dibuat pakai HTML, CSS, dan JavaScript murni — tanpa build tool, tanpa `npm install`.
@@ -41,8 +41,9 @@ Pilih salah satu:
 
 | Pilihan | Efek |
 | --- | --- |
-| Terang | Selalu mode terang |
-| Gelap | Selalu mode gelap |
+| Terang | Mode terang (putih) |
+| Gelap | Mode gelap (hitam pekat) |
+| Abu-abu | Monokrom abu-abu — default situs ini |
 | Ikut Sistem | Mengikuti pengaturan tema di OS pengunjung |
 
 Pilihan **tersimpan otomatis** di `localStorage` browser. Saat pengunjung membuka lagi
@@ -55,11 +56,11 @@ Buka `index.html`, cari blok konfigurasi di `<head>`:
 ```js
 window.__PORTFOLIO_THEME__ = {
   storageKey: 'portfolio-theme',
-  defaultPref: 'dark'   // ganti ke 'system' (ikut OS) atau 'light'
+  defaultPref: 'gray'   // pilihan lain: 'dark', 'light', 'system' (ikut OS)
 };
 ```
 
-`'dark'` = tema gelap khas desain ini (pengaturan sekarang). Nilai ini dipakai
+`'gray'` = tema abu-abu monokrom (pengaturan sekarang). Nilai ini dipakai
 oleh script anti-flash dan `js/theme.js`, jadi cukup diubah di satu tempat.
 
 ## Cara ganti bahasa (ID / EN)
@@ -167,13 +168,15 @@ Tips:
 Semua warna ada di `css/variables.css`, terpisah per tema:
 
 ```css
-:root { --accent: #d4d4d8; --bg: #000000; --surface: #121214; ... }  /* tema gelap  */
-[data-theme="light"] { --accent: #45454d; ... }                      /* tema terang */
+:root { --accent: #e0e0e4; --bg: #000000; --surface: #121214; ... }  /* tema gelap   */
+[data-theme="gray"] { --bg: #17171a; --surface: #212126; ... }       /* tema abu-abu */
+[data-theme="light"] { --accent: #45454d; ... }                      /* tema terang  */
 ```
 
 Ganti nilai `--accent` (aksen abu-abu terang), `--accent-strong` (warna hover),
 `--bg` (latar halaman), dan `--surface` (kartu) untuk mengubah nuansa warna
-seluruh halaman sekaligus. Tombol settings tidak perlu diubah.
+seluruh halaman sekaligus. Tema Abu-abu hanya menimpa sebagian nilai — sisanya
+mewarisi blok `:root`. Tombol settings tidak perlu diubah.
 
 ## Checklist konten sebelum publish
 
@@ -227,7 +230,7 @@ lengkap halaman GitHub Pages di atas (termasuk nama repo).
 ## Catatan teknis
 
 - Tema mengikuti: `localStorage` → `window.__PORTFOLIO_THEME__.defaultPref`
-  (default `dark` = tema gelap desain ini; bisa diubah ke `system`/`light`).
+  (default `gray` = tema abu-abu; bisa diubah ke `dark`/`light`/`system`).
 - Ada script anti-flash di `<head>` supaya tidak kedip terang sebelum jadi gelap.
 - Kalau JavaScript mati, `css/variables.css` otomatis mengikuti tema OS.
 - Sudah mendukung navigasi keyboard (Tab / Esc / panah) dan `prefers-reduced-motion`.

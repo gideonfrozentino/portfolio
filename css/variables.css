@@ -1,10 +1,10 @@
 /* ==========================================================================
    variables.css — Design Tokens
    --------------------------------------------------------------------------
-   Palet mengikuti template "Bentos": hitam pekat, kartu abu gelap,
-   aksen abu-abu terang (warna favorit). Ubah satu nilai di blok
-   [data-theme="light"] atau [data-theme="dark"], dan seluruh website
-   ikut berubah.
+   Palet mengikuti template "Bentos" dengan tiga tema:
+   "gray" (default, monokrom abu-abu), "dark" (hitam pekat), dan
+   "light" (terang). Aksen = abu-abu terang (warna favorit).
+   Ubah satu nilai di bloknya, dan seluruh website ikut berubah.
    ========================================================================== */
 
 :root {
@@ -56,6 +56,32 @@
   --selection: rgba(224, 224, 228, 0.30);
   --overlay: rgba(0, 0, 0, 0.88);
   --header-glass: rgba(0, 0, 0, 0.82);
+
+  color-scheme: dark;
+}
+
+/* ======================================================================
+   TEMA ABU-ABU  (default — monokrom, lebih lembut dari hitam pekat)
+   --------------------------------------------------------------------
+   Hanya menimpa nilai yang berbeda; sisanya mewarisi blok :root di atas.
+   ====================================================================== */
+[data-theme="gray"] {
+  --bg: #17171a;
+  --bg-soft: #1c1c20;
+  --surface: #212126;
+  --surface-2: #2a2a30;
+  --border: rgba(160, 160, 170, 0.22);
+  --border-soft: rgba(160, 160, 170, 0.13);
+
+  --text: #f4f4f6;
+  --text-dim: #a9a9b2;
+  --text-faint: #80808a;
+
+  --nav-link: #b2b2ba;
+  --card-inset: inset 0 1px 0 rgba(255, 255, 255, 0.055);
+
+  --overlay: rgba(8, 8, 10, 0.88);
+  --header-glass: rgba(23, 23, 26, 0.85);
 
   color-scheme: dark;
 }

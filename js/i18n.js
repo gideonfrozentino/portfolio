@@ -44,6 +44,7 @@
     'Mode Tampilan': 'Display Mode',
     Terang: 'Light',
     Gelap: 'Dark',
+    'Abu-abu': 'Gray',
     'Ikut Sistem': 'Follow System',
 
     /* --- Navigasi & tombol utama --- */

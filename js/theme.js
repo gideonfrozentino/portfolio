@@ -15,7 +15,7 @@
   var STORAGE_KEY = CONFIG.storageKey || 'portfolio-theme';
   var DEFAULT_PREF = CONFIG.defaultPref || 'system';
 
-  if (DEFAULT_PREF !== 'light' && DEFAULT_PREF !== 'dark' && DEFAULT_PREF !== 'system') {
+  if (DEFAULT_PREF !== 'light' && DEFAULT_PREF !== 'dark' && DEFAULT_PREF !== 'gray' && DEFAULT_PREF !== 'system') {
     DEFAULT_PREF = 'system';
   }
 
@@ -36,7 +36,7 @@
   function readPref() {
     try {
       var v = localStorage.getItem(STORAGE_KEY);
-      if (v === 'light' || v === 'dark' || v === 'system') return v;
+      if (v === 'light' || v === 'dark' || v === 'gray' || v === 'system') return v;
     } catch (e) {
       /* localStorage bisa diblokir (mode privat) — abaikan saja */
     }
@@ -70,7 +70,7 @@
     root.style.colorScheme = effective;
 
     if (themeColor) {
-      themeColor.setAttribute('content', effective === 'dark' ? '#000000' : '#f2f2f4');
+      themeColor.setAttribute('content', effective === 'dark' ? '#000000' : effective === 'gray' ? '#17171a' : '#f2f2f4');
     }
 
     syncOptions(pref);
