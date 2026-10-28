@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" role="img" aria-label="Contoh gambar proyek 1">
   <!-- PLACEHOLDER: ganti file ini dengan screenshot karyamu (rasio 16:10) -->
   <rect width="1200" height="750" fill="#161619"/>
-  <circle cx="600" cy="345" r="200" fill="#eb5d3a"/>
+  <circle cx="600" cy="345" r="200" fill="#d4d4d8"/>
   <path d="M170 470 C 300 320, 420 620, 600 470 S 910 320, 1040 470" fill="none" stroke="#ffffff" stroke-width="24" stroke-linecap="round" opacity="0.95"/>
   <g fill="#2b2b31">
     <circle cx="120" cy="110" r="7"/><circle cx="160" cy="110" r="7"/><circle cx="200" cy="110" r="7"/>

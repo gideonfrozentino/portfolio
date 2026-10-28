@@ -2,8 +2,9 @@
    variables.css — Design Tokens
    --------------------------------------------------------------------------
    Palet mengikuti template "Bentos": hitam pekat, kartu abu gelap,
-   aksen oranye. Ubah satu nilai di blok [data-theme="light"] atau
-   [data-theme="dark"], dan seluruh website ikut berubah.
+   aksen abu-abu terang (warna favorit). Ubah satu nilai di blok
+   [data-theme="light"] atau [data-theme="dark"], dan seluruh website
+   ikut berubah.
    ========================================================================== */
 
 :root {
@@ -40,19 +41,19 @@
   --text-dim: #9f9f9f;
   --text-faint: #77777d;
 
-  --accent: #eb5d3a;         /* oranye khas template */
-  --accent-strong: #f2734f;  /* oranye lebih terang (hover)  */
-  --accent-contrast: #ffffff;
-  --accent-soft: rgba(235, 93, 58, 0.12);
-  --accent-soft-border: rgba(235, 93, 58, 0.28);
+  --accent: #e0e0e4;         /* aksen abu-abu terang (warna favorit) */
+  --accent-strong: #ffffff;  /* makin terang saat hover */
+  --accent-contrast: #101013;
+  --accent-soft: rgba(224, 224, 228, 0.10);
+  --accent-soft-border: rgba(224, 224, 228, 0.26);
 
   --green: #35e65a;
   --green-glow: rgba(53, 230, 90, 0.22);
 
-  --nav-link: #cecece;
+  --nav-link: #a6a6ad;
   --card-inset: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 
-  --selection: rgba(235, 93, 58, 0.35);
+  --selection: rgba(224, 224, 228, 0.30);
   --overlay: rgba(0, 0, 0, 0.88);
   --header-glass: rgba(0, 0, 0, 0.82);
 
@@ -75,19 +76,19 @@
   --text-dim: #5b5c63;
   --text-faint: #71737a;
 
-  --accent: #d9522f;         /* sedikit lebih gelap supaya kontras di latar putih */
-  --accent-strong: #c34423;
+  --accent: #45454d;         /* abu-abu gelap supaya terbaca di latar putih */
+  --accent-strong: #2e2e35;
   --accent-contrast: #ffffff;
-  --accent-soft: rgba(217, 82, 47, 0.10);
-  --accent-soft-border: rgba(217, 82, 47, 0.28);
+  --accent-soft: rgba(69, 69, 77, 0.08);
+  --accent-soft-border: rgba(69, 69, 77, 0.24);
 
   --green: #1c9e43;
   --green-glow: rgba(28, 158, 67, 0.2);
 
-  --nav-link: #3a3b41;
+  --nav-link: #63646c;
   --card-inset: inset 0 1px 0 rgba(255, 255, 255, 0.9);
 
-  --selection: rgba(217, 82, 47, 0.25);
+  --selection: rgba(69, 69, 77, 0.18);
   --overlay: rgba(20, 20, 24, 0.75);
   --header-glass: rgba(242, 242, 244, 0.85);
 
@@ -114,19 +115,19 @@
     --text-dim: #5b5c63;
     --text-faint: #71737a;
 
-    --accent: #d9522f;
-    --accent-strong: #c34423;
+    --accent: #45454d;
+    --accent-strong: #2e2e35;
     --accent-contrast: #ffffff;
-    --accent-soft: rgba(217, 82, 47, 0.10);
-    --accent-soft-border: rgba(217, 82, 47, 0.28);
+    --accent-soft: rgba(69, 69, 77, 0.08);
+    --accent-soft-border: rgba(69, 69, 77, 0.24);
 
     --green: #1c9e43;
     --green-glow: rgba(28, 158, 67, 0.2);
 
-    --nav-link: #3a3b41;
+    --nav-link: #63646c;
     --card-inset: inset 0 1px 0 rgba(255, 255, 255, 0.9);
 
-    --selection: rgba(217, 82, 47, 0.25);
+    --selection: rgba(69, 69, 77, 0.18);
     --overlay: rgba(20, 20, 24, 0.75);
     --header-glass: rgba(242, 242, 244, 0.85);
 

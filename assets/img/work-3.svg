@@ -3,9 +3,9 @@
   <rect width="1200" height="750" fill="#161619"/>
   <g transform="translate(600 340)">
     <path d="M0 -190 L42 -60 L180 -90 L72 0 L180 90 L42 60 L0 190 L-42 60 L-180 90 L-72 0 L-180 -90 L-42 -60 Z" fill="#2b2b31"/>
-    <circle r="74" fill="#eb5d3a"/>
+    <circle r="74" fill="#d4d4d8"/>
   </g>
-  <circle cx="220" cy="560" r="60" fill="none" stroke="#eb5d3a" stroke-width="8" stroke-dasharray="4 22" stroke-linecap="round"/>
+  <circle cx="220" cy="560" r="60" fill="none" stroke="#d4d4d8" stroke-width="8" stroke-dasharray="4 22" stroke-linecap="round"/>
   <circle cx="990" cy="180" r="44" fill="none" stroke="#3a3a41" stroke-width="8"/>
   <path d="M120 160 H300" stroke="#2b2b31" stroke-width="10" stroke-linecap="round"/>
   <path d="M120 200 H240" stroke="#2b2b31" stroke-width="10" stroke-linecap="round"/>

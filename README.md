@@ -1,6 +1,6 @@
 # Website Portfolio
 
-Website portfolio pribadi dengan desain **gelap + aksen oranye** (gaya template "Bentos"),
+Website portfolio pribadi dengan desain **gelap monokrom + aksen abu-abu terang** (gaya template "Bentos"),
 lengkap dengan **mode tampilan Terang / Gelap / Ikut Sistem** dan
 **tombol ganti bahasa Indonesia / English**.
 Dibuat pakai HTML, CSS, dan JavaScript murni — tanpa build tool, tanpa `npm install`.
@@ -167,11 +167,11 @@ Tips:
 Semua warna ada di `css/variables.css`, terpisah per tema:
 
 ```css
-:root { --accent: #eb5d3a; --bg: #000000; --surface: #121214; ... }  /* tema gelap  */
-[data-theme="light"] { --accent: #d9522f; ... }                      /* tema terang */
+:root { --accent: #d4d4d8; --bg: #000000; --surface: #121214; ... }  /* tema gelap  */
+[data-theme="light"] { --accent: #45454d; ... }                      /* tema terang */
 ```
 
-Ganti nilai `--accent` (aksen oranye), `--accent-strong` (warna hover),
+Ganti nilai `--accent` (aksen abu-abu terang), `--accent-strong` (warna hover),
 `--bg` (latar halaman), dan `--surface` (kartu) untuk mengubah nuansa warna
 seluruh halaman sekaligus. Tombol settings tidak perlu diubah.
 

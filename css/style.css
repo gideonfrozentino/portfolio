@@ -2,7 +2,7 @@
    style.css — Layout & komponen
    --------------------------------------------------------------------------
    Desain mengikuti template "Bentos":
-   hitam pekat, kartu abu gelap membulat, aksen oranye, font Poppins.
+   hitam pekat, kartu abu gelap membulat, aksen abu-abu terang, font Poppins.
    Warna diambil dari design token di css/variables.css.
    ========================================================================== */
 
@@ -743,7 +743,7 @@ main .hero-area {
   bottom: 8px;
   width: 2px;
   border-radius: 2px;
-  background: linear-gradient(180deg, var(--accent), rgba(235, 93, 58, 0.08));
+  background: linear-gradient(180deg, var(--accent), color-mix(in srgb, var(--accent) 10%, transparent));
 }
 
 .tl-item {
@@ -921,7 +921,7 @@ main .hero-area {
   place-items: center;
   border-radius: 50%;
   background: var(--accent);
-  color: #fff;
+  color: var(--accent-contrast);
   opacity: 0;
   transform: scale(0.75);
   transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease),
