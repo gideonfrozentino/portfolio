@@ -68,7 +68,7 @@
     'Lihat Proyek': 'View Projects',
 
     /* --- Marquee tech --- */
-    'Tech yang sedang saya pelajari': "Tech I'm Currently Learning",
+    'Tech & tools yang saya pelajari': "Tech & Tools I'm Learning",
 
     /* --- Biodata --- */
     Biodata: 'Bio',
