@@ -181,8 +181,7 @@ mewarisi blok `:root`. Tombol settings tidak perlu diubah.
 ## Checklist konten sebelum publish
 
 Cari dan ganti semua placeholder yang masih ada. Kata kunci pencarian:
-`Contoh:`, `(ganti)`, `20XX`, `nama@email.com`, `+62 812-3456-7890`,
-`linkedin.com/in/username`.
+`Contoh:`, `(ganti)`, `20XX`.
 
 - [ ] Nama lengkap — samakan ejaan, lalu lengkapi di brand & biodata
 - [ ] Foto profil — `assets/img/profile.jpg` sudah terisi; ganti kalau mau
@@ -194,8 +193,8 @@ Cari dan ganti semua placeholder yang masih ada. Kata kunci pencarian:
 - [ ] Proyek: ganti 3 kartu contoh (gambar + teks) dengan proyek asli
 - [ ] Pendidikan & pengalaman: isi tahun, ganti/isi item "Contoh:"
 - [ ] Sertifikat: ganti gambar contoh, judul, penerbit, tahun, URL kredensial
-- [ ] Email & WhatsApp (link `mailto:` dan `wa.me` ikut diganti)
-- [ ] LinkedIn — GitHub sudah terisi, cek `index.html` bagian `KONTAK`
+- [x] Email (gideontugas123@gmail.com) & WhatsApp (+62 813-7623-6742) — sudah terisi
+- [x] GitHub (gideonfrozentino) — sudah terisi; LinkedIn sengaja tidak ditampilkan
 
 ## Deploy ke GitHub Pages
 
