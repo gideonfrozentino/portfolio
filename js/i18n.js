@@ -67,6 +67,10 @@
     'Unduh CV': 'Download CV',
     'Lihat Proyek': 'View Projects',
 
+    /* --- Tombol ganti foto --- */
+    'Ganti Foto': 'Change Photo',
+    Hapus: 'Remove',
+
     /* --- Marquee tech --- */
     'Tech & tools yang saya pelajari': "Tech & Tools I'm Learning",
 
@@ -163,7 +167,7 @@
     'Tutup menu': 'Close menu',
 
     /* Kartu profil */
-    'Avatar anonim Gideon': 'Anonymous avatar of Gideon',
+    'Foto profil Gideon': 'Profile photo of Gideon',
 
     /* Proyek */
     'Contoh gambar proyek 1': 'Sample project image 1',

@@ -240,7 +240,135 @@
   }
 
   /* ==================================================================
-     6. TAHUN OTOMATIS DI FOOTER
+     6. GANTI FOTO PROFIL (disimpan di browser, tidak diunggah ke mana pun)
+     ==================================================================
+     - Foto dikecilkan dulu (maks 512px) lalu disimpan sebagai data URL
+       di localStorage, supaya tidak cepat memenuhi kuota.
+     - Kalau kuota penuh / localStorage diblokir, foto tetap tampil untuk
+       sesi ini saja dan pengguna diberi tahu.
+     - Tombol "Hapus" mengembalikan ke avatar bawaan.
+     ================================================================== */
+  var PHOTO_KEY = 'portfolio-photo';
+  var PHOTO_DEFAULT = 'assets/img/avatar-anon.svg';
+  var MAX_PX = 512;
+
+  var photoImg = document.getElementById('profilePhoto');
+  var photoPick = document.getElementById('photoPick');
+  var photoReset = document.getElementById('photoReset');
+  var photoInput = document.getElementById('photoInput');
+  var photoNote = document.getElementById('photoNote');
+
+  function note(msg, isError) {
+    if (!photoNote) return;
+    photoNote.textContent = msg || '';
+    photoNote.classList.toggle('is-error', !!isError);
+  }
+
+  function showReset(show) {
+    if (photoReset) photoReset.hidden = !show;
+  }
+
+  function applyPhoto(src, persist) {
+    if (!photoImg) return;
+    photoImg.src = src;
+    var isCustom = src !== PHOTO_DEFAULT;
+    showReset(isCustom);
+    if (!persist) return;
+    if (!isCustom) {
+      try { localStorage.removeItem(PHOTO_KEY); } catch (e) {}
+      return;
+    }
+    try {
+      localStorage.setItem(PHOTO_KEY, src);
+      note('');
+    } catch (e) {
+      note('Foto tampil sekarang, tapi browser menolak menyimpannya (memori penuh).', true);
+    }
+  }
+
+  /* Kecilkan & potong persegi di tengah supaya pas di lingkaran */
+  function processFile(file, done) {
+    var reader = new FileReader();
+
+    reader.onerror = function () {
+      done(null, 'File tidak bisa dibaca. Coba gambar lain.');
+    };
+
+    reader.onload = function () {
+      var img = new Image();
+
+      img.onerror = function () {
+        done(null, 'File ini sepertinya bukan gambar.');
+      };
+
+      img.onload = function () {
+        var side = Math.min(img.width, img.height);
+        var sx = (img.width - side) / 2;
+        var sy = (img.height - side) / 2;
+        var out = Math.min(MAX_PX, side);
+        var canvas = document.createElement('canvas');
+        canvas.width = out;
+        canvas.height = out;
+
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(img, sx, sy, side, side, 0, 0, out, out);
+
+        var type = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
+        done(canvas.toDataURL(type, 0.9), null);
+      };
+
+      img.src = reader.result;
+    };
+
+    reader.readAsDataURL(file);
+  }
+
+  if (photoImg && photoPick && photoInput) {
+    /* Muat foto tersimpan (kalau ada) */
+    try {
+      var saved = localStorage.getItem(PHOTO_KEY);
+      if (saved) applyPhoto(saved, false);
+    } catch (e) {
+      /* localStorage diblokir — pakai avatar bawaan */
+    }
+
+    photoPick.addEventListener('click', function () {
+      photoInput.click();
+    });
+
+    photoInput.addEventListener('change', function () {
+      var file = photoInput.files && photoInput.files[0];
+      if (!file) return;
+
+      if (!/^image\//.test(file.type)) {
+        note('Pilih file gambar (JPG, PNG, atau WebP).', true);
+        photoInput.value = '';
+        return;
+      }
+
+      note('Memproses foto...');
+      processFile(file, function (dataUrl, err) {
+        photoInput.value = '';
+        if (err) {
+          note(err, true);
+          return;
+        }
+        applyPhoto(dataUrl, true);
+        note('Foto diperbarui. Tersimpan di browser ini saja.');
+      });
+    });
+
+    if (photoReset) {
+      photoReset.addEventListener('click', function () {
+        applyPhoto(PHOTO_DEFAULT, true);
+        note('Kembali ke avatar bawaan.');
+        photoInput.value = '';
+      });
+    }
+  }
+
+  /* ==================================================================
+     7. TAHUN OTOMATIS DI FOOTER
      ================================================================== */
   var year = document.getElementById('year');
   if (year) year.textContent = String(new Date().getFullYear());

@@ -493,7 +493,7 @@ main .hero-area {
 .photo-wrap {
   position: relative;
   width: min(250px, 62vw);
-  margin: 4px auto 28px;
+  margin: 4px auto 14px;
 }
 
 .photo-circle {
@@ -524,8 +524,90 @@ main .hero-area {
   box-shadow: 0 26px 50px -26px rgba(0, 0, 0, 0.6);
 }
 
+.photo-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  margin: 16px 0 0;
+  padding: 4px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-soft);
+  background: var(--surface-2);
+}
+
+.photo-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 1rem;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+  background: none;
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease),
+    background-color var(--dur) var(--ease);
+}
+
+.photo-btn svg {
+  width: 15px;
+  height: 15px;
+  flex: none;
+}
+
+.photo-btn:hover {
+  color: var(--accent);
+  border-color: var(--accent-soft-border);
+  background: var(--accent-soft);
+}
+
+.photo-btn--primary {
+  color: var(--text);
+  background: var(--surface);
+  border-color: var(--border-soft);
+}
+
+.photo-btn--ghost {
+  background: none;
+  border-color: transparent;
+  color: var(--text-dim);
+}
+
+.photo-btn--ghost:hover {
+  color: #f08a72;
+  border-color: rgba(240, 138, 114, 0.35);
+  background: rgba(240, 138, 114, 0.10);
+}
+
+.photo-note {
+  min-height: 0;
+  margin-top: 0.5rem;
+  text-align: center;
+  font-size: 0.7rem;
+  line-height: 1.5;
+  color: var(--text-faint);
+}
+
+.photo-note:empty {
+  display: none;
+}
+
+.photo-note.is-error {
+  color: #f08a72;
+}
+
+/* Tanpa JavaScript, tombol ganti foto tidak berguna */
+.no-js .photo-actions,
+.no-js .photo-note {
+  display: none;
+}
+
 .profile-name {
-  font-size: 1.8rem;
+  margin-top: 20px;
+  font-size: 1.85rem;
   font-weight: 700;
   letter-spacing: -0.02em;
 }
@@ -541,7 +623,8 @@ main .hero-area {
   display: flex;
   justify-content: center;
   gap: 0.65rem;
-  margin-top: 1.5rem;
+  margin-top: auto;
+  padding-top: 1.6rem;
 }
 
 .social-row a {
