@@ -163,7 +163,7 @@
     'Tutup menu': 'Close menu',
 
     /* Kartu profil */
-    'Foto profil Gideon': 'Profile photo of Gideon',
+    'Avatar anonim Gideon': 'Anonymous avatar of Gideon',
 
     /* Proyek */
     'Contoh gambar proyek 1': 'Sample project image 1',
