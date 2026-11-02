@@ -204,14 +204,14 @@ sudah dimatikan, jadi hanya kamu yang bisa membukanya.
 **Cara paling cepat:** klik dua kali `index.html` di folder ini.
 
 **Lewat localhost:** klik dua kali `Buka-Portfolio.bat` — otomatis membuka
-`http://localhost:8080` dan menjalankan server lokal (127.0.0.1, hanya bisa
+`http://localhost:8090` dan menjalankan server lokal (127.0.0.1, hanya bisa
 diakses dari komputer ini). Tutup jendela hitamnya untuk mematikan server.
 
 **Manual:**
 ```bash
-python -m http.server 8080 --bind 127.0.0.1
+python -m http.server 8090 --bind 127.0.0.1
 ```
-lalu buka `http://localhost:8080`.
+lalu buka `http://localhost:8090`.
 
 Foto profil yang kamu ganti lewat tombol "Ganti Foto" tersimpan di browser
 (localStorage), jadi hanya berlaku di browser & perangkat itu saja.
