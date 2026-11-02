@@ -196,42 +196,23 @@ Cari dan ganti semua placeholder yang masih ada. Kata kunci pencarian:
 - [x] Email (gideontugas123@gmail.com) & WhatsApp (+62 813-7623-6742) — sudah terisi
 - [x] GitHub (gideonfrozentino) — sudah terisi; LinkedIn sengaja tidak ditampilkan
 
-## Deploy ke GitHub Pages
+## Menjalankan secara lokal (situs ini tidak publik)
 
-1. Pastikan `gh` dan `git` terpasang, lalu login sekali:
-   ```bash
-   gh auth login
-   ```
-2. Dari folder ini:
-   ```bash
-   git add .
-   git commit -m "Initial portfolio"
-   gh repo create NAMA-REPO --public --source=. --remote=origin --push
-   ```
-3. Buka repo di GitHub → **Settings → Pages** → **Deploy from a branch**
-   → branch `main`, folder `/ (root)`.
-4. Situs tersedia di `https://USERNAME.github.io/NAMA-REPO/`.
-   Kalau repo bernama `USERNAME.github.io`, alamatnya ada di root.
-5. Untuk custom domain: tambahkan file `CNAME`, atur DNS, lalu aktifkan HTTPS.
+Situs ini **sengaja tidak dipublikasikan**: repo GitHub-nya private dan GitHub Pages
+sudah dimatikan, jadi hanya kamu yang bisa membukanya.
 
-Saat menambahkan canonical, `og:url`, JSON-LD, dan `sitemap.xml`, gunakan URL
-lengkap halaman GitHub Pages di atas (termasuk nama repo).
+**Cara paling cepat:** klik dua kali `index.html` di folder ini.
 
-## Dukungan browser & aksesibilitas
+**Lewat localhost:** klik dua kali `Buka-Portfolio.bat` — otomatis membuka
+`http://localhost:8080` dan menjalankan server lokal (127.0.0.1, hanya bisa
+diakses dari komputer ini). Tutup jendela hitamnya untuk mematikan server.
 
-- Target: dua versi terakhir Chrome, Edge, Firefox, dan Safari.
-- Kontras teks kecil sudah disesuaikan ke WCAG AA.
-- Navigasi keyboard: Tab, Esc, dan tombol panah di panel tema.
-- `prefers-reduced-motion` dihormati.
-- Tanpa JavaScript: konten tetap tampil, menu mobile tetap bisa dipakai,
-  tema mengikuti OS, dan tombol settings + bahasa + filter proyek disembunyikan.
+**Manual:**
+```bash
+python -m http.server 8080 --bind 127.0.0.1
+```
+lalu buka `http://localhost:8080`.
 
-## Catatan teknis
+Foto profil yang kamu ganti lewat tombol "Ganti Foto" tersimpan di browser
+(localStorage), jadi hanya berlaku di browser & perangkat itu saja.
 
-- Tema mengikuti: `localStorage` → `window.__PORTFOLIO_THEME__.defaultPref`
-  (default `gray` = tema abu-abu; bisa diubah ke `dark`/`light`/`system`).
-- Ada script anti-flash di `<head>` supaya tidak kedip terang sebelum jadi gelap.
-- Kalau JavaScript mati, `css/variables.css` otomatis mengikuti tema OS.
-- Sudah mendukung navigasi keyboard (Tab / Esc / panah) dan `prefers-reduced-motion`.
-- Font (Poppins) diambil dari Google Fonts. Kalau ingin 100% offline, hapus 3 baris
-  `<link ...fonts.googleapis.com...>` di `<head>` — font sistem otomatis dipakai.
