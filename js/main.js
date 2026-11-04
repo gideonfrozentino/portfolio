@@ -249,7 +249,7 @@
      - Tombol "Hapus" mengembalikan ke avatar bawaan.
      ================================================================== */
   var PHOTO_KEY = 'portfolio-photo';
-  var PHOTO_DEFAULT = 'assets/img/avatar-anon.svg';
+  var PHOTO_DEFAULT = 'assets/img/profile.jpg';
   var MAX_PX = 512;
 
   var photoImg = document.getElementById('profilePhoto');
