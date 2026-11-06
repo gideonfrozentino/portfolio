@@ -267,6 +267,7 @@
   var loginError = document.getElementById('loginError');
   var loginGuest = document.getElementById('loginGuest');
   var logoutBtn = document.getElementById('logoutBtn');
+  var adminOpenBtn = document.getElementById('adminOpen');
 
   function getSession() {
     try {
@@ -280,6 +281,7 @@
     document.body.classList.toggle('is-admin', role === 'admin');
     document.body.classList.toggle('is-guest', role === 'guest');
     if (logoutBtn) logoutBtn.hidden = !role;
+    if (adminOpenBtn) adminOpenBtn.hidden = role !== 'admin';
 
     if (loginEl) {
       if (role) loginEl.removeAttribute('data-open');

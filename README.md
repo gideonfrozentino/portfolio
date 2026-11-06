@@ -234,6 +234,41 @@ Isi `ADMIN_PASS_B64` adalah kata sandi yang di-encode base64, misalnya:
 python -c "import base64;print(base64.b64encode(b'kataSandiBaru').decode())"
 ```
 
+## Panel admin (ubah konten dari website)
+
+Login sebagai admin → tombol **Kelola** muncul di header → panel terbuka dengan
+4 tab: **Foto**, **Ijazah**, **Proyek**, **Teks**.
+
+Perubahan ditulis **langsung ke repo** lewat GitHub API, jadi tampil untuk semua
+pengunjung setelah GitHub Pages selesai build (~1 menit).
+
+### Sekali setup: GitHub token
+
+Panel butuh izin menulis ke repo. Buat token **sekali saja**:
+
+1. Buka **github.com/settings/personal-access-tokens/new** (Fine-grained token).
+2. **Repository access** → *Only select repositories* → pilih **portfolio**.
+3. **Permissions → Repository permissions → Contents** → **Read and write**.
+4. **Generate token**, copy nilainya (`github_pat_...`).
+5. Buka panel admin → tempel di kolom **GitHub token** → **Simpan token**.
+
+Token hanya disimpan di `localStorage` browser itu — tidak pernah masuk ke repo
+dan tidak terlihat pengunjung. Kalau token bocor/hilang, hapus di GitHub lalu
+buat baru.
+
+### Yang bisa diubah
+
+| Tab | Kegunaan |
+| --- | --- |
+| **Foto** | Ganti foto profil untuk semua pengunjung (otomatis dipotong persegi 512px) |
+| **Ijazah** | Unggah sertifikat/ijazah (JPG/PNG/PDF) + judul, penerbit, tahun |
+| **Proyek** | Tambah kartu proyek: judul, kategori, deskripsi, link, gambar |
+| **Teks** | Sunting biodata (nama, TTL, peminatan, alamat, pendidikan, kampus, status, bahasa) |
+
+Semua data tersimpan di **`data/content.json`**, dan `js/content.js` merender
+bagian-bagian itu saat halaman dibuka. Kalau `content.json` kosong atau gagal
+dimuat, halaman memakai HTML statis sebagai fallback.
+
 ### Penting soal keamanan
 
 Login ini **hanya gerbang tampilan, bukan keamanan sungguhan**. Situs statis

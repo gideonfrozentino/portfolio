@@ -1713,3 +1713,224 @@ body.is-auth-locked {
     padding: 0.55rem 0.75rem;
   }
 }
+
+
+/* ==========================================================================
+   PANEL ADMIN
+   ========================================================================== */
+
+.admin {
+  position: fixed;
+  inset: 0;
+  z-index: 1500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: rgba(8, 8, 10, 0.78);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.admin[hidden] {
+  display: none;
+}
+
+.admin__card {
+  width: min(560px, 100%);
+  max-height: calc(100vh - 2.5rem);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 1.5rem;
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.9);
+}
+
+.admin__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.admin__head h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.admin__close {
+  display: inline-flex;
+  padding: 0.35rem;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-dim);
+  cursor: pointer;
+}
+
+.admin__close svg {
+  width: 16px;
+  height: 16px;
+}
+
+.admin__close:hover {
+  color: var(--accent);
+  border-color: var(--accent-soft-border);
+}
+
+.admin__token {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.6rem;
+}
+
+.admin__token .admin__field {
+  flex: 1;
+}
+
+.admin__status {
+  min-height: 1.1rem;
+  font-size: 0.76rem;
+  line-height: 1.5;
+  color: var(--text-faint);
+}
+
+.admin__status.is-error {
+  color: #f08a72;
+}
+
+.admin__tabs {
+  display: flex;
+  gap: 0.3rem;
+  padding: 0.25rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-soft);
+  background: var(--surface-2);
+}
+
+.admin__tabs button {
+  flex: 1;
+  padding: 0.42rem 0.5rem;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+  background: none;
+  color: var(--text-dim);
+  font: inherit;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: color var(--dur) var(--ease), background-color var(--dur) var(--ease);
+}
+
+.admin__tabs button:hover {
+  color: var(--text);
+}
+
+.admin__tabs button.is-active {
+  color: var(--accent-contrast);
+  background: var(--accent);
+}
+
+.admin__form,
+.admin__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.admin__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.admin__field > span {
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.admin__field input,
+.admin__field select,
+.admin__field textarea {
+  padding: 0.55rem 0.7rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.88rem;
+  resize: vertical;
+}
+
+.admin__field input:focus-visible,
+.admin__field select:focus-visible,
+.admin__field textarea:focus-visible {
+  outline: none;
+  border-color: var(--accent-soft-border);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.admin__file {
+  display: block;
+  padding: 0.7rem;
+  border-radius: 12px;
+  border: 1px dashed var(--border);
+  background: var(--surface-2);
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.admin__file input {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.4rem;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+
+.admin__file:hover {
+  border-color: var(--accent-soft-border);
+}
+
+.admin__hint {
+  margin-bottom: 0.6rem;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: var(--text-dim);
+}
+
+.admin__panel[hidden] {
+  display: none;
+}
+
+/* Tombol Kelola di header (admin saja) */
+.admin-open {
+  padding: 0.42rem 0.8rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--accent-soft-border);
+  background: var(--accent-soft);
+  color: var(--accent);
+  font: inherit;
+  font-size: 0.78rem;
+  cursor: pointer;
+}
+
+.admin-open:hover {
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+@media (max-width: 560px) {
+  .admin__token {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

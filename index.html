@@ -199,6 +199,7 @@
 
         <a class="btn btn--primary btn--sm header-cta" href="#kontak">Hubungi Saya</a>
         <button type="button" class="logout" id="logoutBtn" hidden>Keluar</button>
+        <button type="button" class="admin-open" id="adminOpen" hidden>Kelola</button>
 
         <button type="button" class="nav-toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false" aria-controls="navLinks">
           <span></span><span></span><span></span>
@@ -347,38 +348,38 @@
           <div class="bio-item">
             <!-- Cek ejaan nama lengkap: dokumenmu menulis "Frozentino" dan "Fronttino" — samakan, lalu lengkapi di sini -->
             <dt>Nama Lengkap</dt>
-            <dd>Gideon</dd>
+            <dd data-edit="bio_name">Gideon</dd>
           </div>
           <div class="bio-item">
             <dt>Tempat, Tanggal Lahir</dt>
             <!-- PLACEHOLDER -->
-            <dd>Contoh: Jakarta, 1 Januari 2000</dd>
+            <dd data-edit="bio_birth">Contoh: Jakarta, 1 Januari 2000</dd>
           </div>
           <div class="bio-item">
             <dt>Peminatan</dt>
-            <dd>Cyber Security</dd>
+            <dd data-edit="bio_focus">Cyber Security</dd>
           </div>
           <div class="bio-item">
             <dt>Alamat</dt>
             <!-- PLACEHOLDER -->
-            <dd>Contoh: Kota, Provinsi</dd>
+            <dd data-edit="bio_address">Contoh: Kota, Provinsi</dd>
           </div>
           <div class="bio-item">
             <dt>Pendidikan</dt>
-            <dd>S1 Informatika (Cyber Security)</dd>
+            <dd data-edit="bio_education">S1 Informatika (Cyber Security)</dd>
           </div>
           <div class="bio-item">
             <dt>Kampus</dt>
             <!-- PLACEHOLDER: ganti 20XX dengan tahun angkatanmu -->
-            <dd>Universitas Pelita Harapan &middot; 20XX</dd>
+            <dd data-edit="bio_campus">Universitas Pelita Harapan &middot; 20XX</dd>
           </div>
           <div class="bio-item">
             <dt>Status</dt>
-            <dd>Mahasiswa aktif &middot; terbuka untuk magang</dd>
+            <dd data-edit="bio_status">Mahasiswa aktif &middot; terbuka untuk magang</dd>
           </div>
           <div class="bio-item">
             <dt>Bahasa</dt>
-            <dd>Indonesia &middot; Inggris</dd>
+            <dd data-edit="bio_lang">Indonesia &middot; Inggris</dd>
           </div>
         </dl>
       </div>
@@ -752,8 +753,90 @@
     </figure>
   </div>
 
+  <!-- ===================================================================
+       PANEL ADMIN — hanya bisa dibuka kalau login sebagai admin.
+       Menyimpan perubahan langsung ke repo lewat GitHub API (butuh token).
+       =================================================================== -->
+  <div class="admin" id="adminPanel" hidden>
+    <div class="admin__card" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
+      <header class="admin__head">
+        <h2 id="adminTitle">Kelola Situs</h2>
+        <button type="button" class="admin__close" id="adminClose" aria-label="Tutup panel">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"></path></svg>
+        </button>
+      </header>
+
+      <div class="admin__token">
+        <label class="admin__field">
+          <span>GitHub token</span>
+          <input type="password" id="adminToken" placeholder="ghp_..." autocomplete="off" />
+        </label>
+        <button type="button" class="btn btn--primary btn--sm" id="adminSaveToken">Simpan token</button>
+      </div>
+      <p class="admin__status" id="adminStatus" role="status" aria-live="polite"></p>
+
+      <nav class="admin__tabs" aria-label="Bagian panel">
+        <button type="button" data-tab="foto" class="is-active">Foto</button>
+        <button type="button" data-tab="sertifikat">Ijazah</button>
+        <button type="button" data-tab="proyek">Proyek</button>
+        <button type="button" data-tab="teks">Teks</button>
+      </nav>
+
+      <section class="admin__panel" data-panel="foto">
+        <p class="admin__hint">Mengganti foto yang dilihat semua pengunjung. Gambar otomatis dipotong persegi dan dikecilkan ke 512px.</p>
+        <label class="admin__file">
+          <input type="file" id="adminPhotoInput" accept="image/*" />
+          <span>Pilih gambar</span>
+        </label>
+      </section>
+
+      <section class="admin__panel" data-panel="sertifikat" hidden>
+        <form id="certForm" class="admin__form">
+          <label class="admin__field"><span>Judul</span><input name="certTitle" placeholder="Contoh: Sertifikat Cyber Security" /></label>
+          <label class="admin__field"><span>Penerbit</span><input name="certIssuer" placeholder="Contoh: Dicoding" /></label>
+          <label class="admin__field"><span>Tahun</span><input name="certYear" placeholder="2026" /></label>
+          <label class="admin__file">
+            <input type="file" name="certFile" accept="image/*,application/pdf" />
+            <span>Pilih file ijazah (JPG / PNG / PDF)</span>
+          </label>
+          <button type="submit" class="btn btn--primary btn--sm">Unggah sertifikat</button>
+        </form>
+      </section>
+
+      <section class="admin__panel" data-panel="proyek" hidden>
+        <form id="projForm" class="admin__form">
+          <label class="admin__field"><span>Judul</span><input name="projTitle" placeholder="Nama proyek" /></label>
+          <label class="admin__field">
+            <span>Kategori</span>
+            <select name="projCat">
+              <option value="latihan">Latihan</option>
+              <option value="web">Web</option>
+              <option value="kuliah">Kuliah</option>
+            </select>
+          </label>
+          <label class="admin__field"><span>Deskripsi</span><textarea name="projDesc" rows="3" placeholder="Apa yang dibuat, masalah apa yang diselesaikan"></textarea></label>
+          <label class="admin__field"><span>Link (opsional)</span><input name="projLink" placeholder="https://..." /></label>
+          <label class="admin__file">
+            <input type="file" name="projImage" accept="image/*" />
+            <span>Gambar proyek (opsional)</span>
+          </label>
+          <button type="submit" class="btn btn--primary btn--sm">Tambah proyek</button>
+        </form>
+      </section>
+
+      <section class="admin__panel" data-panel="teks" hidden>
+        <form id="bioForm" class="admin__form">
+          <div id="bioFields" class="admin__fields"></div>
+          <button type="submit" class="btn btn--primary btn--sm">Simpan teks</button>
+        </form>
+      </section>
+    </div>
+  </div>
+
   <script src="js/theme.js"></script>
   <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/content.js"></script>
+  <script src="js/admin.js"></script>
 </body>
 </html>
