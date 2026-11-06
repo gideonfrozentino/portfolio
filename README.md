@@ -196,16 +196,18 @@ Cari dan ganti semua placeholder yang masih ada. Kata kunci pencarian:
 - [x] Email (gideontugas123@gmail.com) & WhatsApp (+62 813-7623-6742) — sudah terisi
 - [x] GitHub (gideonfrozentino) — sudah terisi; LinkedIn sengaja tidak ditampilkan
 
-## Menjalankan secara lokal (situs ini tidak publik)
+## Menjalankan secara lokal (opsional)
 
-Situs ini **sengaja tidak dipublikasikan**: repo GitHub-nya private dan GitHub Pages
-sudah dimatikan, jadi hanya kamu yang bisa membukanya.
+Situs sudah online di **https://gideonfrozentino.github.io/portfolio/** — repo public,
+GitHub Pages aktif dari branch `main`.
 
-**Cara paling cepat:** klik dua kali `index.html` di folder ini.
+Untuk melihat versi lokal (berguna saat mengedit):
+
+**Paling cepat:** klik dua kali `index.html` di folder ini.
 
 **Lewat localhost:** klik dua kali `Buka-Portfolio.bat` — otomatis membuka
-`http://localhost:8090` dan menjalankan server lokal (127.0.0.1, hanya bisa
-diakses dari komputer ini). Tutup jendela hitamnya untuk mematikan server.
+`http://localhost:8090` (server hanya menerima koneksi dari komputer ini).
+Tutup jendela hitamnya untuk mematikan server.
 
 **Manual:**
 ```bash
@@ -213,6 +215,19 @@ python -m http.server 8090 --bind 127.0.0.1
 ```
 lalu buka `http://localhost:8090`.
 
-Foto profil yang kamu ganti lewat tombol "Ganti Foto" tersimpan di browser
-(localStorage), jadi hanya berlaku di browser & perangkat itu saja.
+## Mengganti foto profil (khusus pemilik)
 
+Tombol **Ganti Foto / Hapus** disembunyikan dari pengunjung. Cara membukanya:
+
+1. **Klik foto profil 3× cepat.**
+2. Masukkan kata sandi: `gideon-ro3ma5`
+3. Tombol muncul — pilih gambar, otomatis dipotong persegi & dikecilkan.
+4. Untuk mengunci lagi: klik foto 3× sekali lagi.
+
+Catatan penting:
+
+- Foto disimpan di `localStorage` browser itu saja, jadi **tidak mengubah situs
+  untuk pengunjung lain**. Untuk mengganti foto yang dilihat semua orang, ganti
+  file `assets/img/profile.jpg` di repo (rasio 1:1, tampil bulat).
+- Ini bukan keamanan sungguhan: situs statis, kode JS bisa dibaca siapa pun.
+  Cukup untuk menyembunyikan kontrol dari pengunjung biasa.
