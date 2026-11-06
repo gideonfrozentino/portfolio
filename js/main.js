@@ -248,66 +248,108 @@
        sesi ini saja dan pengguna diberi tahu.
      - Tombol "Hapus" mengembalikan ke avatar bawaan.
      ================================================================== */
-  /* --- Mode pemilik: kontrol hanya muncul untuk pemilik ----------------
-     Klik avatar 3x cepat -> minta kata sandi -> tombol ganti foto muncul.
-     Catatan jujur: ini cuma menyembunyikan kontrol, BUKAN keamanan asli —
-     situs statis, JS-nya bisa dibaca siapa pun yang membuka DevTools.
-     --------------------------------------------------------------------- */
-  var OWNER_FLAG = 'portfolio-owner-mode';
-  var OWNER_PASS_B64 = 'Z2lkZW9uLXJvM21hNQ==';
+  /* --- Login admin / tamu ----------------------------------------------
+     Admin  : username `gideon` + kata sandi (disimpan sebagai base64).
+     Tamu   : langsung masuk, tanpa kontrol ganti foto.
+     Pilihan disimpan di localStorage, jadi tidak perlu login tiap buka.
 
-  function ownerOn() {
+     Catatan jujur: situs ini statis (tanpa server), jadi ini gerbang
+     tampilan — BUKAN keamanan sungguhan. Kode JS bisa dibaca siapa pun.
+     ------------------------------------------------------------------ */
+  var SESSION_KEY = 'portfolio-session';
+  var ADMIN_USER = 'gideon';
+  var ADMIN_PASS_B64 = 'MTEyMjMzNDQ='; /* 11223344 */
+
+  var loginEl = document.getElementById('login');
+  var loginForm = document.getElementById('loginForm');
+  var loginUser = document.getElementById('loginUser');
+  var loginPass = document.getElementById('loginPass');
+  var loginError = document.getElementById('loginError');
+  var loginGuest = document.getElementById('loginGuest');
+  var logoutBtn = document.getElementById('logoutBtn');
+
+  function getSession() {
     try {
-      return localStorage.getItem(OWNER_FLAG) === '1';
+      return localStorage.getItem(SESSION_KEY);
     } catch (e) {
-      return false;
+      return null;
     }
   }
 
-  function setOwner(on) {
-    document.body.classList.toggle('is-site-owner', on);
-    try {
-      if (on) localStorage.setItem(OWNER_FLAG, '1');
-      else localStorage.removeItem(OWNER_FLAG);
-    } catch (e) {}
+  function applyRole(role) {
+    document.body.classList.toggle('is-admin', role === 'admin');
+    document.body.classList.toggle('is-guest', role === 'guest');
+    if (logoutBtn) logoutBtn.hidden = !role;
+
+    if (loginEl) {
+      if (role) loginEl.removeAttribute('data-open');
+      else loginEl.setAttribute('data-open', '');
+    }
+    document.body.classList.toggle('is-auth-locked', !role);
+
+    if (!role && loginUser) {
+      window.setTimeout(function () {
+        loginUser.focus();
+      }, 60);
+    }
   }
 
-  (function ownerGate() {
-    var wrap = document.querySelector('.photo-wrap');
-    if (!wrap) return;
+  function setSession(role) {
+    try {
+      if (role) localStorage.setItem(SESSION_KEY, role);
+      else localStorage.removeItem(SESSION_KEY);
+    } catch (e) {}
+    applyRole(role);
+  }
 
-    if (ownerOn()) document.body.classList.add('is-site-owner');
+  function showLoginError(msg) {
+    if (loginError) loginError.textContent = msg || '';
+  }
 
-    var taps = 0;
-    var timer = null;
+  if (loginForm) {
+    loginForm.addEventListener('submit', function (e) {
+      e.preventDefault();
 
-    wrap.addEventListener('click', function () {
-      taps += 1;
-      clearTimeout(timer);
-      timer = setTimeout(function () {
-        taps = 0;
-      }, 900);
-      if (taps < 3) return;
-
-      taps = 0;
-
-      if (ownerOn()) {
-        setOwner(false);
-        return;
-      }
-
-      var input = window.prompt('Kata sandi pemilik:');
-      if (input === null) return;
+      var user = (loginUser && loginUser.value ? loginUser.value : '').trim().toLowerCase();
+      var pass = loginPass && loginPass.value ? loginPass.value : '';
 
       var ok = false;
       try {
-        ok = btoa(input) === OWNER_PASS_B64;
-      } catch (e) {
+        ok = user === ADMIN_USER && btoa(pass) === ADMIN_PASS_B64;
+      } catch (err) {
         ok = false;
       }
-      if (ok) setOwner(true);
+
+      if (ok) {
+        showLoginError('');
+        if (loginPass) loginPass.value = '';
+        setSession('admin');
+      } else {
+        var en = window.__portfolioI18n && window.__portfolioI18n.get() === 'en';
+        showLoginError(en ? 'Wrong username or password.' : 'Username atau kata sandi salah.');
+        if (loginPass) {
+          loginPass.value = '';
+          loginPass.focus();
+        }
+      }
     });
-  })();
+  }
+
+  if (loginGuest) {
+    loginGuest.addEventListener('click', function () {
+      showLoginError('');
+      if (loginPass) loginPass.value = '';
+      setSession('guest');
+    });
+  }
+
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', function () {
+      setSession(null);
+    });
+  }
+
+  applyRole(getSession());
 
   var PHOTO_KEY = 'portfolio-photo';
   var PHOTO_DEFAULT = 'assets/img/profile.jpg';

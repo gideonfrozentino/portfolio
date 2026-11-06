@@ -70,6 +70,36 @@
   <a class="skip-link" href="#main">Lewati ke konten</a>
 
   <!-- =====================================================================
+       LAYAR LOGIN — pilih akses: admin (username + kata sandi) atau tamu.
+       Catatan jujur: situs ini statis (tanpa server), jadi login ini hanya
+       gerbang tampilan, bukan keamanan sungguhan. Logikanya di js/main.js.
+       ===================================================================== -->
+  <div class="login" id="login" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <form class="login__card" id="loginForm" autocomplete="off" novalidate>
+      <h2 class="login__title" id="loginTitle">Masuk</h2>
+      <p class="login__sub">Masuk sebagai admin, atau lanjut sebagai tamu.</p>
+
+      <label class="login__field">
+        <span>Username</span>
+        <input type="text" id="loginUser" name="username" placeholder="gideon" autocomplete="username" />
+      </label>
+
+      <label class="login__field">
+        <span>Kata sandi</span>
+        <input type="password" id="loginPass" name="password" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" autocomplete="current-password" />
+      </label>
+
+      <p class="login__error" id="loginError" role="alert"></p>
+
+      <button type="submit" class="btn btn--primary login__submit">Masuk sebagai Admin</button>
+
+      <p class="login__divider"><span>atau</span></p>
+
+      <button type="button" class="login__guest" id="loginGuest">Lanjut sebagai tamu</button>
+    </form>
+  </div>
+
+  <!-- =====================================================================
        HEADER — logo, menu, tombol bahasa (ID/EN), tombol tema, dan tombol
        "Hubungi Saya". Tetap menempel di atas saat halaman di-scroll.
        ===================================================================== -->
@@ -168,6 +198,7 @@
         </div>
 
         <a class="btn btn--primary btn--sm header-cta" href="#kontak">Hubungi Saya</a>
+        <button type="button" class="logout" id="logoutBtn" hidden>Keluar</button>
 
         <button type="button" class="nav-toggle" id="navToggle" aria-label="Buka menu" aria-expanded="false" aria-controls="navLinks">
           <span></span><span></span><span></span>

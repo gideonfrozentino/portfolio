@@ -599,23 +599,22 @@ main .hero-area {
   color: #f08a72;
 }
 
-/* Kontrol ganti foto disembunyikan dari pengunjung.
-   Pemilik membukanya: klik avatar 3x cepat, lalu masukkan kata sandi. */
+/* Kontrol ganti foto hanya untuk admin (lihat layar login). */
 .photo-actions,
 .photo-note {
   display: none;
 }
 
-.is-site-owner .photo-actions {
+.is-admin .photo-actions {
   display: flex;
 }
 
-.is-site-owner .photo-note:not(:empty) {
+.is-admin .photo-note:not(:empty) {
   display: block;
 }
 
 /* Tanpa tombol, jarak avatar -> nama dirapatkan */
-body:not(.is-site-owner) .profile-name {
+body:not(.is-admin) .profile-name {
   margin-top: 6px;
 }
 
@@ -1542,5 +1541,175 @@ body.is-locked {
   .reveal {
     opacity: 1;
     transform: none;
+  }
+}
+
+
+/* ==========================================================================
+   LAYAR LOGIN (admin / tamu)
+   ========================================================================== */
+
+.login {
+  position: fixed;
+  inset: 0;
+  z-index: 1400; /* di atas header (1000) dan lightbox (200) */
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(8, 8, 10, 0.7);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.login[data-open] {
+  display: flex;
+}
+
+.login__card {
+  width: min(390px, 100%);
+  max-height: calc(100vh - 3rem);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 1.9rem 1.7rem;
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.85);
+}
+
+.login__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.login__sub {
+  margin-top: -0.55rem;
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--text-dim);
+}
+
+.login__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.38rem;
+}
+
+.login__field span {
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.login__field input {
+  padding: 0.68rem 0.85rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.92rem;
+}
+
+.login__field input::placeholder {
+  color: var(--text-faint);
+}
+
+.login__field input:focus-visible {
+  outline: none;
+  border-color: var(--accent-soft-border);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.login__error {
+  min-height: 1rem;
+  margin-top: -0.35rem;
+  font-size: 0.78rem;
+  color: #f08a72;
+}
+
+.login__submit {
+  width: 100%;
+  justify-content: center;
+}
+
+.login__divider {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.72rem;
+  color: var(--text-faint);
+}
+
+.login__divider::before,
+.login__divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.login__guest {
+  padding: 0.6rem;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+  background: none;
+  color: var(--text-dim);
+  font: inherit;
+  font-size: 0.84rem;
+  cursor: pointer;
+  transition: color var(--dur) var(--ease), background-color var(--dur) var(--ease);
+}
+
+.login__guest:hover {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+body.is-auth-locked {
+  overflow: hidden;
+}
+
+.logout {
+  padding: 0.42rem 0.8rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text-dim);
+  font: inherit;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.logout:hover {
+  color: #f08a72;
+  border-color: rgba(240, 138, 114, 0.35);
+}
+
+/* Layar pendek (laptop kecil / jendela sempit): rapatkan agar muat tanpa scroll */
+@media (max-height: 640px) {
+  .login__card {
+    gap: 0.6rem;
+    padding: 1.25rem 1.4rem;
+  }
+
+  .login__title {
+    font-size: 1.25rem;
+  }
+
+  .login__sub {
+    margin-top: -0.3rem;
+    font-size: 0.8rem;
+  }
+
+  .login__field input {
+    padding: 0.55rem 0.75rem;
   }
 }

@@ -215,19 +215,36 @@ python -m http.server 8090 --bind 127.0.0.1
 ```
 lalu buka `http://localhost:8090`.
 
-## Mengganti foto profil (khusus pemilik)
+## Login (admin / tamu)
 
-Tombol **Ganti Foto / Hapus** disembunyikan dari pengunjung. Cara membukanya:
+Saat dibuka, situs menampilkan layar login:
 
-1. **Klik foto profil 3× cepat.**
-2. Masukkan kata sandi: `gideon-ro3ma5`
-3. Tombol muncul — pilih gambar, otomatis dipotong persegi & dikecilkan.
-4. Untuk mengunci lagi: klik foto 3× sekali lagi.
+| Peran | Cara masuk | Yang bisa dilakukan |
+| --- | --- | --- |
+| **Admin** | username `gideon`, kata sandi `11223344` | Lihat situs + tombol **Ganti Foto / Hapus** di kartu profil |
+| **Tamu** | klik **Lanjut sebagai tamu** | Lihat seluruh isi situs, tanpa kontrol ganti foto |
 
-Catatan penting:
+Pilihan disimpan di `localStorage` (key `portfolio-session`), jadi tidak perlu
+login ulang tiap buka. Tombol **Keluar** di header mengembalikan ke layar login.
 
-- Foto disimpan di `localStorage` browser itu saja, jadi **tidak mengubah situs
-  untuk pengunjung lain**. Untuk mengganti foto yang dilihat semua orang, ganti
-  file `assets/img/profile.jpg` di repo (rasio 1:1, tampil bulat).
-- Ini bukan keamanan sungguhan: situs statis, kode JS bisa dibaca siapa pun.
-  Cukup untuk menyembunyikan kontrol dari pengunjung biasa.
+Mengubah kredensial: di `js/main.js`, ubah `ADMIN_USER` dan `ADMIN_PASS_B64`.
+Isi `ADMIN_PASS_B64` adalah kata sandi yang di-encode base64, misalnya:
+
+```bash
+python -c "import base64;print(base64.b64encode(b'kataSandiBaru').decode())"
+```
+
+### Penting soal keamanan
+
+Login ini **hanya gerbang tampilan, bukan keamanan sungguhan**. Situs statis
+(tanpa server) berarti seluruh kode JavaScript bisa dibaca siapa pun yang membuka
+DevTools, dan sandi base64 bisa di-decode. Cukup untuk memisahkan admin vs tamu
+dan menyembunyikan tombol dari pengunjung biasa. Untuk privasi nyata, pilih salah
+satu: private-kan repo (situs jadi offline) atau taruh di balik proxy ber-auth.
+
+### Foto profil
+
+- Foto yang diunggah lewat tombol **Ganti Foto** disimpan di `localStorage`
+  browser itu saja — **tidak mengubah situs untuk pengunjung lain**.
+- Untuk mengganti foto yang dilihat semua orang: ganti file
+  `assets/img/profile.jpg` di repo (rasio 1:1, tampil bulat).

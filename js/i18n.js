@@ -71,6 +71,15 @@
     'Ganti Foto': 'Change Photo',
     Hapus: 'Remove',
 
+    /* --- Layar login --- */
+    Masuk: 'Sign in',
+    'Masuk sebagai admin, atau lanjut sebagai tamu.': 'Sign in as admin, or continue as guest.',
+    'Kata sandi': 'Password',
+    'Masuk sebagai Admin': 'Sign in as Admin',
+    atau: 'or',
+    'Lanjut sebagai tamu': 'Continue as guest',
+    Keluar: 'Log out',
+
     /* --- Marquee tech --- */
     'Tech & tools yang saya pelajari': "Tech & Tools I'm Learning",
 
