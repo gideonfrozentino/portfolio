@@ -599,10 +599,24 @@ main .hero-area {
   color: #f08a72;
 }
 
-/* Tanpa JavaScript, tombol ganti foto tidak berguna */
-.no-js .photo-actions,
-.no-js .photo-note {
+/* Kontrol ganti foto disembunyikan dari pengunjung.
+   Pemilik membukanya: klik avatar 3x cepat, lalu masukkan kata sandi. */
+.photo-actions,
+.photo-note {
   display: none;
+}
+
+.is-site-owner .photo-actions {
+  display: flex;
+}
+
+.is-site-owner .photo-note:not(:empty) {
+  display: block;
+}
+
+/* Tanpa tombol, jarak avatar -> nama dirapatkan */
+body:not(.is-site-owner) .profile-name {
+  margin-top: 6px;
 }
 
 .profile-name {

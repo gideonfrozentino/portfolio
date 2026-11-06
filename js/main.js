@@ -248,6 +248,67 @@
        sesi ini saja dan pengguna diberi tahu.
      - Tombol "Hapus" mengembalikan ke avatar bawaan.
      ================================================================== */
+  /* --- Mode pemilik: kontrol hanya muncul untuk pemilik ----------------
+     Klik avatar 3x cepat -> minta kata sandi -> tombol ganti foto muncul.
+     Catatan jujur: ini cuma menyembunyikan kontrol, BUKAN keamanan asli —
+     situs statis, JS-nya bisa dibaca siapa pun yang membuka DevTools.
+     --------------------------------------------------------------------- */
+  var OWNER_FLAG = 'portfolio-owner-mode';
+  var OWNER_PASS_B64 = 'Z2lkZW9uLXJvM21hNQ==';
+
+  function ownerOn() {
+    try {
+      return localStorage.getItem(OWNER_FLAG) === '1';
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function setOwner(on) {
+    document.body.classList.toggle('is-site-owner', on);
+    try {
+      if (on) localStorage.setItem(OWNER_FLAG, '1');
+      else localStorage.removeItem(OWNER_FLAG);
+    } catch (e) {}
+  }
+
+  (function ownerGate() {
+    var wrap = document.querySelector('.photo-wrap');
+    if (!wrap) return;
+
+    if (ownerOn()) document.body.classList.add('is-site-owner');
+
+    var taps = 0;
+    var timer = null;
+
+    wrap.addEventListener('click', function () {
+      taps += 1;
+      clearTimeout(timer);
+      timer = setTimeout(function () {
+        taps = 0;
+      }, 900);
+      if (taps < 3) return;
+
+      taps = 0;
+
+      if (ownerOn()) {
+        setOwner(false);
+        return;
+      }
+
+      var input = window.prompt('Kata sandi pemilik:');
+      if (input === null) return;
+
+      var ok = false;
+      try {
+        ok = btoa(input) === OWNER_PASS_B64;
+      } catch (e) {
+        ok = false;
+      }
+      if (ok) setOwner(true);
+    });
+  })();
+
   var PHOTO_KEY = 'portfolio-photo';
   var PHOTO_DEFAULT = 'assets/img/profile.jpg';
   var MAX_PX = 512;
