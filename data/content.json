@@ -1,6 +1,15 @@
 {
   "profilePhoto": "assets/img/profile.jpg",
-  "bio": {},
+  "bio": {
+    "bio_name": "Gideon Frozentino",
+    "bio_birth": "",
+    "bio_focus": "",
+    "bio_address": "",
+    "bio_education": "",
+    "bio_campus": "",
+    "bio_status": "",
+    "bio_lang": ""
+  },
   "projects": [],
   "certificates": []
 }
