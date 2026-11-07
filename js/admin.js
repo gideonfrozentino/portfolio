@@ -256,7 +256,12 @@
       bioFields.innerHTML = BIO_KEYS.map(function (pair) {
         var key = pair[0];
         var label = pair[1];
-        var val = bio[key] || '';
+
+        /* Kalau content.json belum punya nilainya, pakai teks yang sedang
+           tampil di halaman supaya admin tidak melihat field kosong. */
+        var shown = document.querySelector('[data-edit="' + key + '"]');
+        var fallback = shown ? shown.textContent.trim() : '';
+        var val = bio[key] || fallback;
         return (
           '<label class="admin__field">' +
             '<span>' + label + '</span>' +
