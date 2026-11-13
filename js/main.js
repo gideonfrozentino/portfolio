@@ -240,7 +240,113 @@
   }
 
   /* ==================================================================
-     6. TAHUN OTOMATIS DI FOOTER
+     6. LOGIN ADMIN / TAMU
+     ================================================================== */
+  /* Admin  : username `gideon` + kata sandi (disimpan sebagai base64).
+     Tamu   : langsung masuk, tanpa akses panel admin.
+     Pilihan disimpan di localStorage, jadi tidak perlu login tiap buka.
+
+     Catatan jujur: situs statis (tanpa server), jadi ini gerbang tampilan —
+     BUKAN keamanan sungguhan. Kode JS bisa dibaca siapa pun. */
+  var SESSION_KEY = 'portfolio-session';
+  var ADMIN_USER = 'gideon';
+  var ADMIN_PASS_B64 = 'MTEyMjMzNDQ='; /* 11223344 */
+
+  var loginEl = document.getElementById('login');
+  var loginForm = document.getElementById('loginForm');
+  var loginUser = document.getElementById('loginUser');
+  var loginPass = document.getElementById('loginPass');
+  var loginError = document.getElementById('loginError');
+  var loginGuest = document.getElementById('loginGuest');
+  var logoutBtn = document.getElementById('logoutBtn');
+  var adminOpenBtn = document.getElementById('adminOpen');
+
+  function getSession() {
+    try {
+      return localStorage.getItem(SESSION_KEY);
+    } catch (e) {
+      return null;
+    }
+  }
+
+  function applyRole(role) {
+    document.body.classList.toggle('is-admin', role === 'admin');
+    document.body.classList.toggle('is-guest', role === 'guest');
+    if (logoutBtn) logoutBtn.hidden = !role;
+    if (adminOpenBtn) adminOpenBtn.hidden = role !== 'admin';
+
+    if (loginEl) {
+      if (role) loginEl.removeAttribute('data-open');
+      else loginEl.setAttribute('data-open', '');
+    }
+    document.body.classList.toggle('is-auth-locked', !role);
+
+    if (!role && loginUser) {
+      window.setTimeout(function () {
+        loginUser.focus();
+      }, 60);
+    }
+  }
+
+  function setSession(role) {
+    try {
+      if (role) localStorage.setItem(SESSION_KEY, role);
+      else localStorage.removeItem(SESSION_KEY);
+    } catch (e) {}
+    applyRole(role);
+  }
+
+  function showLoginError(msg) {
+    if (loginError) loginError.textContent = msg || '';
+  }
+
+  if (loginForm) {
+    loginForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var user = loginUser && loginUser.value ? loginUser.value.trim().toLowerCase() : '';
+      var pass = loginPass && loginPass.value ? loginPass.value : '';
+
+      var ok = false;
+      try {
+        ok = user === ADMIN_USER && btoa(pass) === ADMIN_PASS_B64;
+      } catch (err) {
+        ok = false;
+      }
+
+      if (ok) {
+        showLoginError('');
+        if (loginPass) loginPass.value = '';
+        setSession('admin');
+      } else {
+        var en = window.__portfolioI18n && window.__portfolioI18n.get() === 'en';
+        showLoginError(en ? 'Wrong username or password.' : 'Username atau kata sandi salah.');
+        if (loginPass) {
+          loginPass.value = '';
+          loginPass.focus();
+        }
+      }
+    });
+  }
+
+  if (loginGuest) {
+    loginGuest.addEventListener('click', function () {
+      showLoginError('');
+      if (loginPass) loginPass.value = '';
+      setSession('guest');
+    });
+  }
+
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', function () {
+      setSession(null);
+    });
+  }
+
+  applyRole(getSession());
+
+  /* ==================================================================
+     7. TAHUN OTOMATIS DI FOOTER
      ================================================================== */
   var year = document.getElementById('year');
   if (year) year.textContent = String(new Date().getFullYear());
