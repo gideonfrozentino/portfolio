@@ -28,7 +28,7 @@ portfolio/
 │   └── main.js             <- navbar, filter proyek, animasi scroll, lightbox
 └── assets/
     ├── img/
-    │   ├── profile.jpg     <- foto profil (kartu kiri bagian TENTANG)
+    │   ├── avatar-anon.svg <- avatar anonim (dipakai permanen)
     │   ├── work-1..3.svg   <- gambar contoh proyek (placeholder)
     │   └── avatar.svg      <- avatar placeholder cadangan
     └── certs/              <- gambar/PDF sertifikat
@@ -89,7 +89,7 @@ di dictionary akan dibiarkan apa adanya (aman).
 | Yang mau diubah | Letak |
 | --- | --- |
 | Nama, role, foto, sosial | `index.html` → bagian `TENTANG` (kartu kiri) |
-| Foto profil | ganti `assets/img/profile.jpg` (rasio 1:1, tampil bulat) |
+| Foto profil | **anonim permanen** (`assets/img/avatar-anon.svg`), tanpa tombol ganti |
 | Teks perkenalan & badge | `index.html` → bagian `TENTANG` (kartu kanan) |
 | Marquee tech | `index.html` → kartu "Tech yang sedang saya pelajari" |
 | Biodata | `index.html` → bagian `BIODATA` |
@@ -184,7 +184,7 @@ Cari dan ganti semua placeholder yang masih ada. Kata kunci pencarian:
 `Contoh:`, `(ganti)`, `20XX`.
 
 - [ ] Nama lengkap — samakan ejaan, lalu lengkapi di brand & biodata
-- [ ] Foto profil — `assets/img/profile.jpg` sudah terisi; ganti kalau mau
+- [x] Foto profil — anonim permanen, tanpa tombol ganti
 - [ ] Judul halaman, meta description, dan OG title (sudah terisi nama — periksa)
 - [ ] Biodata: tempat & tanggal lahir, alamat, dan tahun angkatan (`20XX`)
 - [ ] Badge "Terbuka untuk magang & kolaborasi" — sesuaikan statusmu
@@ -279,7 +279,7 @@ satu: private-kan repo (situs jadi offline) atau taruh di balik proxy ber-auth.
 
 ### Foto profil
 
-- Foto yang diunggah lewat tombol **Ganti Foto** disimpan di `localStorage`
-  browser itu saja — **tidak mengubah situs untuk pengunjung lain**.
-- Untuk mengganti foto yang dilihat semua orang: ganti file
-  `assets/img/profile.jpg` di repo (rasio 1:1, tampil bulat).
+Foto profil **anonim permanen** (`assets/img/avatar-anon.svg`) — tidak ada tombol
+ganti di halaman, dan panel admin tidak punya tab foto. Untuk mengganti (kalau
+suatu saat mau): ganti isi `assets/img/avatar-anon.svg`, atau arahkan `src`
+`#profilePhoto` di `index.html` ke file lain.

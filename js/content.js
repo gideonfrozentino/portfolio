@@ -80,11 +80,6 @@
   function apply(data) {
     if (!data) return;
 
-    if (data.profilePhoto) {
-      var img = document.getElementById('profilePhoto');
-      if (img) img.src = data.profilePhoto;
-    }
-
     applyText(data.bio);
     renderProjects(data.projects);
     renderCerts(data.certificates);

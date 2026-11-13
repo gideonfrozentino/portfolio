@@ -67,10 +67,6 @@
     'Unduh CV': 'Download CV',
     'Lihat Proyek': 'View Projects',
 
-    /* --- Tombol ganti foto --- */
-    'Ganti Foto': 'Change Photo',
-    Hapus: 'Remove',
-
     /* --- Layar login --- */
     Masuk: 'Sign in',
     'Masuk sebagai admin, atau lanjut sebagai tamu.': 'Sign in as admin, or continue as guest.',

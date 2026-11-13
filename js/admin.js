@@ -27,7 +27,6 @@
   var bioFields = document.getElementById('bioFields');
   var bioForm = document.getElementById('bioForm');
 
-  var photoInput = document.getElementById('adminPhotoInput');
 
   var certForm = document.getElementById('certForm');
   var projForm = document.getElementById('projForm');
@@ -294,30 +293,6 @@
           if (window.__portfolioApply) window.__portfolioApply(data);
           status('Tersimpan. Situs live diperbarui ~1 menit.');
         });
-      }).catch(function (e) {
-        status(e.message, true);
-      });
-    });
-  }
-
-  /* ---------- foto profil ---------- */
-
-  if (photoInput) {
-    photoInput.addEventListener('change', function () {
-      var file = photoInput.files && photoInput.files[0];
-      if (!file) return;
-
-      if (!/^image\//.test(file.type)) { status('Pilih file gambar.', true); return; }
-
-      status('Mengunggah foto...');
-
-      imageFile(file, 512, true, 0.88).then(function (b64) {
-        return putFile('assets/img/profile.jpg', b64, 'Panel admin: ganti foto profil');
-      }).then(function () {
-        photoInput.value = '';
-        var img = document.getElementById('profilePhoto');
-        if (img) img.src = 'assets/img/profile.jpg?t=' + Date.now();
-        status('Foto terunggah. Situs live diperbarui ~1 menit.');
       }).catch(function (e) {
         status(e.message, true);
       });
